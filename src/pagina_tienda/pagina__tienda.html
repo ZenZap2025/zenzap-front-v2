@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Zen Zap - Panel de Usuario</title>
+    <style>
+        :root {
+            --sidebar-width: 260px;
+            --sidebar-collapsed-width: 60px;
+            --sidebar-bg: #1a1a1a;
+            --sidebar-text: #fff;
+            --accent: #4CAF50;
+            --transition: 0.3s ease;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html,
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #f5f5f5;
+            overflow-x: hidden;
+        }
+
+        /* Layout */
+        .layout {
+            display: flex;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: var(--sidebar-width);
+            height: 100vh;
+            background: var(--sidebar-bg);
+            color: var(--sidebar-text);
+            padding: 2rem 1.5rem 1rem;
+            overflow-y: auto;
+            transition: width var(--transition);
+            z-index: 1000;
+        }
+
+        .layout--collapsed .sidebar {
+            width: var(--sidebar-collapsed-width);
+        }
+
+        .sidebar__toggle {
+            position: absolute;
+            top: 1rem;
+            right: -1.5rem;
+            width: 3rem;
+            height: 3rem;
+            background: var(--accent);
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.25rem;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+            z-index: 1001;
+            transition: background var(--transition);
+        }
+
+        .sidebar__toggle:hover {
+            background: #43a047;
+        }
+
+        .sidebar__title {
+            margin-bottom: 1.5rem;
+            font-size: 1.25rem;
+            color: var(--accent);
+            white-space: nowrap;
+        }
+
+        .layout--collapsed .sidebar__title,
+        .layout--collapsed .sidebar__text {
+            display: none;
+        }
+
+        .sidebar__nav {
+            list-style: none;
+            margin-top: 2rem;
+        }
+
+        .sidebar__item {
+            margin-bottom: 1rem;
+        }
+
+        .sidebar__link {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: inherit;
+            text-decoration: none;
+            white-space: nowrap;
+            transition: color var(--transition), transform var(--transition);
+        }
+
+        .sidebar__link:hover {
+            color: var(--accent);
+            transform: translateX(5px);
+        }
+
+        .sidebar__icon {
+            font-size: 1.2rem;
+        }
+
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: var(--sidebar-width);
+            right: 0;
+            height: 4.5rem;
+            padding: 0 2rem;
+            background: linear-gradient(to right, #16A34A, #14B8A6, #16A34A);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: left var(--transition);
+            z-index: 1001;
+        }
+
+        .layout--collapsed .navbar {
+            left: var(--sidebar-collapsed-width);
+        }
+
+        .navbar__logo img {
+            height: 30px;
+        }
+
+        .navbar__user {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .navbar__user img {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+        }
+
+        .user-dropdown {
+            position: absolute;
+            top: 110%;
+            right: 0;
+            background: #fff;
+            color: #333;
+            border-radius: 6px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: opacity var(--transition), transform var(--transition), visibility var(--transition);
+            z-index: 1002;
+        }
+
+        .user-dropdown.open {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .user-dropdown a {
+            display: block;
+            padding: 0.75rem 1.25rem;
+            color: #333;
+            text-decoration: none;
+            transition: background var(--transition);
+        }
+
+        .user-dropdown a:hover {
+            background: #f0f0f0;
+        }
+
+        .user-dropdown .divider {
+            height: 1px;
+            background: #e0e0e0;
+            margin: 0.25rem 0;
+        }
+
+        /* Main content */
+        .main {
+            margin-top: 4.5rem;
+            margin-left: var(--sidebar-width);
+            padding: 2rem;
+            transition: margin-left var(--transition);
+            min-height: calc(100vh - 4.5rem);
+            background: #fff;
+        }
+
+        .layout--collapsed .main {
+            margin-left: var(--sidebar-collapsed-width);
+        }
+
+        /* Welcome section */
+        .welcome h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .welcome p {
+            color: #555;
+        }
+
+
+        .card {
+            background: #f9f9f9;
+            border-radius: 8px;
+            padding: 1.25rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform var(--transition);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card__icon {
+            width: 3rem;
+            height: 3rem;
+            margin: 0 auto 1rem;
+            background: #e8f5e9;
+            color: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+        }
+
+        .card__title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .card__text {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* Pausas recomendadas */
+        .section-title {
+            font-size: 1.5rem;
+            margin: 2rem 0 1rem;
+            color: #333;
+        }
+
+        .exercises {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .exercise {
+            background: #f9f9f9;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            flex: 1 1 280px;
+            display: flex;
+            flex-direction: column;
+            transition: transform var(--transition);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+        }
+
+        .product-info {
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            flex-grow: 1;
+        }
+
+        .product-title {
+            font-size: 1.1rem;
+            margin: 0 0 0.5rem;
+            font-weight: 600;
+        }
+
+        .product-description {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .product-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .product-price {
+            font-weight: bold;
+            font-size: 1rem;
+        }
+
+        .add-to-cart {
+            background-color: #10b981;
+            color: white;
+            border: none;
+            padding: 0.4rem 0.8rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: background 0.2s;
+        }
+
+        .add-to-cart:hover {
+            background-color: #0e9e6e;
+        }
+
+        .exercise:hover {
+            transform: translateY(-5px);
+        }
+
+        .exercise__img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+        }
+
+        .exercise__body {
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            flex: 1;
+        }
+
+        .exercise__body h3 {
+            margin: 0;
+            font-size: 1.1rem;
+        }
+
+        .exercise__body p {
+            margin: 0.5rem 0;
+            color: #555;
+            font-size: 0.9rem;
+        }
+
+        .badge {
+            background: #e8f5e9;
+            color: var(--accent);
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            display: inline-block;
+        }
+
+        .details-link {
+            font-size: 0.9rem;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        /* Footer */
+        .footer {
+            background: #fff;
+            padding: 1rem 2rem;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #777;
+            box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+            margin-top: 2rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .sidebar {
+                position: relative;
+                width: 100%;
+                height: auto;
+                padding-bottom: 1rem;
+            }
+
+            .sidebar__toggle {
+                display: none;
+            }
+
+            .navbar {
+                left: 0;
+            }
+
+            .main {
+                margin-left: 0;
+            }
+
+            .categories {
+                grid-template-columns: 1fr;
+            }
+
+            .exercises {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="layout" id="appLayout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <button id="toggleSidebar" class="sidebar__toggle" aria-label="Ocultar/Mostrar menú">☰</button>
+            <h2 class="sidebar__title">Pausas Activas</h2>
+            <ul class="sidebar__nav">
+                <li class="sidebar__item"><a href="../pagina_princial/pagina_principal_usuario.html"
+                        class="sidebar__link"><span class="sidebar__icon">🧘</span><span
+                            class="sidebar__text">Inicio</span></a></li>
+
+            </ul>
+        </aside>
+
+        <!-- Navbar -->
+        <header class="navbar">
+            <div class="navbar__logo"><img src="https://via.placeholder.com/120x30?text=Zen+Zap" alt="Logo Zen Zap">
+            </div>
+            <div class="navbar__user" id="userMenu">
+                <img src="https://picsum.photos/30/30" alt="Usuario">
+                <span>Usuario</span>
+                <div class="user-dropdown" id="userDropdown">
+                    <a href="../pagina_princial/pagina_configuracion_perfil.html">Configuración de perfil</a>
+                    <div class="divider"></div>
+                    <a href="#" style="color:#d32f2f;">Cerrar sesión</a>
+                </div>
+            </div>
+        </header>
+
+        <main class="main">
+            <section class="welcome">
+                <h1>Bienvenido a tienda ZenZap</h1>
+                <p>siemppre es un buen día para cuidar tu bienestar</p>
+            </section>
+
+
+            <h2 class="section-title">Productos ZenZap</h2>
+            <div class="filters-container"
+                style="display: flex; justify-content: space-between; align-items: center; max-width: 900px; margin: 0 auto 20px; gap: 10px;">
+                <input type="text" placeholder="Buscar por nombre..." class="search-input"
+                    style="flex: 1; padding: 10px; border: 1px solid #ccc; border-radius: 8px;">
+                <select class="category-filter" style="padding: 10px; border: 1px solid #ccc; border-radius: 8px;">
+                    <option value="all">Todas las categorías</option>
+                    <option value="yoga">Yoga</option>
+                    <option value="masaje">Masaje</option>
+                    <option value="ejercicio">Ejercicio</option>
+                    <!-- Agrega más si es necesario -->
+                </select>
+            </div>
+            <section class="exercises">
+                <div class="exercise">
+                    <img class="exercise__img" src="https://picsum.photos/seed/1/400/200" alt="Estiramiento de cuello">
+                    <div class="exercise__body">
+                        <h3 class="product-title">Rodillo de espuma</h3>
+                        <p class="product-description">Ideal para relajar musculos despues del trabajar.</p>
+                        <div class="product-footer">
+                            <span class="product-price">$35.00</span>
+                            <button class="add-to-cart">Añadir al carrito</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="exercise">
+                    <img class="exercise__img" src="https://picsum.photos/seed/2/400/200" alt="Sentadillas suaves">
+                    <div class="exercise__body">
+                        <h3 class="product-title">Banda de resistencia</h3>
+                        <p class="product-description">Perfecta para estiramientos y ejercicios ligeros en la oficina.
+                        </p>
+                        <div class="product-footer">
+                            <span class="product-price">$25.00</span>
+                            <button class="add-to-cart">Añadir al carrito</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="exercise">
+                    <img class="exercise__img" src="https://picsum.photos/seed/4/400/200" alt="Mini pedalera portátil">
+                    <div class="exercise__body">
+                        <h3 class="product-title">Mini pedalera portátil</h3>
+                        <p class="product-description">Activa la circulación de tus piernas mientras trabajas sentado.
+                        </p>
+                        <div class="product-footer">
+                            <span class="product-price">$79.00</span>
+                            <button class="add-to-cart">Añadir al carrito</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="exercise">
+                    <img class="exercise__img" src="https://picsum.photos/seed/5/400/200"
+                        alt="Almohadilla lumbar ergonómica">
+                    <div class="exercise__body">
+                        <h3 class="product-title">Almohadilla lumbar ergonómica</h3>
+                        <p class="product-description">Brinda soporte a tu espalda baja y mejora tu postura durante el
+                            trabajo.</p>
+                        <div class="product-footer">
+                            <span class="product-price">$29.00</span>
+                            <button class="add-to-cart">Añadir al carrito</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="exercise">
+                    <img class="exercise__img" src="https://picsum.photos/seed/5/400/200" alt="Balance de hombros">
+                    <div class="exercise__body">
+                        <h3 class="product-title">Pelota antiestrés</h3>
+                        <p class="product-description">Excelente para relajar las manos y mejorar la concentración.</p>
+                        <div class="product-footer">
+                            <span class="product-price">$5.00</span>
+                            <button class="add-to-cart">Añadir al carrito</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="exercise">
+                    <img class="exercise__img" src="https://picsum.photos/seed/6/400/200" alt="Silla ergonómica">
+                    <div class="exercise__body">
+                        <h3 class="product-title">Silla ergonómica</h3>
+                        <p class="product-description">Diseñada para mejorar tu postura y reducir la fatiga durante
+                            largas jornadas.</p>
+                        <div class="product-footer">
+                            <span class="product-price">$149.00</span>
+                            <button class="add-to-cart">Añadir al carrito</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="exercise">
+                    <img class="exercise__img" src="https://picsum.photos/seed/7/400/200"
+                        alt="Reloj con recordatorios de estiramiento">
+                    <div class="exercise__body">
+                        <h3 class="product-title">Reloj de pausas activas</h3>
+                        <p class="product-description">Te recuerda moverte y estirarte en intervalos regulares.</p>
+                        <div class="product-footer">
+                            <span class="product-price">$45.00</span>
+                            <button class="add-to-cart">Añadir al carrito</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="exercise">
+                    <img class="exercise__img" src="https://picsum.photos/seed/8/400/200" alt="Esterilla de yoga">
+                    <div class="exercise__body">
+                        <h3 class="product-title">Esterilla de yoga</h3>
+                        <p class="product-description">Ideal para hacer estiramientos o ejercicios de relajación en la
+                            oficina o en casa.</p>
+                        <div class="product-footer">
+                            <span class="product-price">$30.00</span>
+                            <button class="add-to-cart">Añadir al carrito</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="exercise">
+                    <img class="exercise__img" src="https://picsum.photos/seed/9/400/200"
+                        alt="Cojín para silla antiestrés">
+                    <div class="exercise__body">
+                        <h3 class="product-title">Cojín antiestrés para silla</h3>
+                        <p class="product-description">Reduce la presión en la zona lumbar y mejora tu comodidad al
+                            sentarte.</p>
+                        <div class="product-footer">
+                            <span class="product-price">$22.00</span>
+                            <button class="add-to-cart">Añadir al carrito</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="exercise">
+                    <img class="exercise__img" src="https://picsum.photos/seed/10/400/200" alt="Masajeador portátil">
+                    <div class="exercise__body">
+                        <h3 class="product-title">Masajeador portátil</h3>
+                        <p class="product-description">Perfecto para aliviar tensión muscular rápidamente en cualquier
+                            momento.</p>
+                        <div class="product-footer">
+                            <span class="product-price">$55.00</span>
+                            <button class="add-to-cart">Añadir al carrito</button>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </section>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">&copy; 2025 Zen Zap. Todos los derechos reservados.</footer>
+
+    <script>
+        const layout = document.getElementById('appLayout');
+        const toggleBtn = document.getElementById('toggleSidebar');
+        const userMenu = document.getElementById('userMenu');
+        const userDropdown = document.getElementById('userDropdown');
+
+        // Restore sidebar state
+        if (localStorage.getItem('sidebarCollapsed') === 'true') {
+            layout.classList.add('layout--collapsed');
+        }
+        toggleBtn.addEventListener('click', () => {
+            layout.classList.toggle('layout--collapsed');
+            localStorage.setItem('sidebarCollapsed', layout.classList.contains('layout--collapsed'));
+        });
+
+        // User dropdown toggle
+        userMenu.addEventListener('click', e => {
+            e.stopPropagation();
+            userDropdown.classList.toggle('open');
+        });
+        document.addEventListener('click', () => {
+            userDropdown.classList.remove('open');
+        });
+    </script>
+</body>
+
+</html>

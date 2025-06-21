@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Configuración de Perfil</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans">
+  <!-- Barra superior -->
+  <header class="bg-gradient-to-r from-green-500 to-green-600 text-white p-4 shadow-md flex justify-between items-center">
+    <div class="flex items-center gap-4">
+      <a href="pagina_principal_usuario.html" class="text-white hover:underline text-sm bg-green-700 px-3 py-1 rounded-md shadow hover:bg-green-800 transition">
+        ← Volver a inicio
+      </a>
+      <h1 class="text-xl font-semibold">Zen Zap</h1>
+    </div>
+    <span class="font-medium">Configuración de perfil</span>
+  </header>
+
+  <!-- Contenedor principal -->
+  <main class="max-w-4xl mx-auto mt-10 p-6 bg-white rounded-lg shadow-md">
+    <h2 class="text-2xl font-semibold text-gray-800 mb-6">Perfil de Usuario</h2>
+
+    <!-- Imagen de perfil -->
+    <div class="flex items-center gap-6 mb-8">
+      <img src="https://i.pravatar.cc/100" alt="Foto de perfil" class="w-20 h-20 rounded-full shadow">
+      <div>
+        <p class="text-lg font-medium text-gray-700">Nombre del usuario</p>
+        <p class="text-sm text-gray-500">Editar imagen próximamente...</p>
+      </div>
+    </div>
+
+    <!-- Formulario -->
+    <form class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div>
+        <label class="block text-gray-700 font-medium mb-2">Nombre completo</label>
+        <input type="text" placeholder="Escribe tu nombre completo" class="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-400">
+      </div>
+
+      <div>
+        <label class="block text-gray-700 font-medium mb-2">Correo electrónico</label>
+        <input type="email" value="correo@ejemplo.com" readonly class="w-full p-3 border rounded-md bg-gray-100 text-gray-500 cursor-not-allowed">
+      </div>
+
+      <div>
+        <label class="block text-gray-700 font-medium mb-2">Fecha de nacimiento</label>
+        <input type="date" class="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-400">
+      </div>
+
+      <div></div> <!-- Espacio vacío para alinear correctamente -->
+
+      <div>
+        <label class="block text-gray-700 font-medium mb-2">Contraseña actual</label>
+        <input type="password" placeholder="••••••••" class="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-400">
+      </div>
+
+      <div>
+        <label class="block text-gray-700 font-medium mb-2">Nueva contraseña</label>
+        <input type="password" placeholder="••••••••" class="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-400">
+      </div>
+    </form>
+
+    <!-- Botones -->
+    <div class="mt-8 flex justify-end gap-4">
+      <button class="px-6 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-100 transition">Cancelar</button>
+      <button class="px-6 py-2 bg-green-500 text-white rounded-md hover:bg-green-600 transition">Guardar cambios</button>
+    </div>
+  </main>
+</body>
+</html>
+

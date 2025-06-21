@@ -1,45 +1,63 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Zen Zap - Bienvenida</title>
-  <script src="https://cdn.tailwindcss.com"></script>  
+  <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
     /* Estilos originales de la home */
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
+
     /* Ajustes para el carrusel */
     #carouselWrapper {
-      position: relative;    /* Contenedor relativo */
-      height: 450px;         /* Altura fija */
+      position: relative;
+      /* Contenedor relativo */
+      height: 450px;
+      /* Altura fija */
     }
+
     .carousel-slide {
-      position: absolute;    /* Superposición de slides */
+      position: absolute;
+      /* Superposición de slides */
       top: 0;
       left: 0;
       width: 100%;
-      height: 450px;         /* Misma altura */
+      height: 450px;
+      /* Misma altura */
       background-size: cover;
       background-position: center;
-      opacity: 0;            /* Oculto por defecto */
+      opacity: 0;
+      /* Oculto por defecto */
       transition: opacity 0.5s ease-in-out;
     }
+
     .carousel-slide:first-child {
-      opacity: 1;            /* Muestra el primer slide al cargar */
+      opacity: 1;
+      /* Muestra el primer slide al cargar */
     }
+
     @keyframes typing {
-      from { width: 0 }
-      to { width: 100% }
+      from {
+        width: 0
+      }
+
+      to {
+        width: 100%
+      }
     }
+
     .typing {
       overflow: hidden;
       white-space: nowrap;
       border-right: 2px solid;
       animation: typing 3s steps(40, end);
     }
+
     .carousel-indicators {
       position: absolute;
       bottom: 20px;
@@ -48,6 +66,7 @@
       display: flex;
       gap: 12px;
     }
+
     .carousel-indicator {
       width: 12px;
       height: 12px;
@@ -55,18 +74,22 @@
       border-radius: 50%;
       cursor: pointer;
     }
+
     .carousel-indicator.active {
       background-color: white;
     }
+
     /* Estilos del formulario de login/reg */
     .login-modal {
       max-width: 400px !important;
       border-radius: 1rem;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
+
     .modal-content {
       border-radius: 1rem !important;
     }
+
     .google-btn {
       border: 2px solid #28A745;
       color: #212529;
@@ -74,10 +97,12 @@
       border-radius: 0.3rem;
       padding: 12px 16px;
     }
+
     .google-btn:hover {
       background-color: #28A745;
       color: white;
     }
+
     .btn-success {
       background-color: #28A745;
       border-color: #28A745;
@@ -85,37 +110,45 @@
       transition: all 0.3s ease;
       padding: 12px 24px;
     }
+
     .btn-success:hover {
-      box-shadow: 0 4px 8px rgba(0,162,90,0.3);
+      box-shadow: 0 4px 8px rgba(0, 162, 90, 0.3);
     }
+
     .form-input {
       border: 1px solid #dee2e6;
       border-radius: 0.3rem;
       padding: 12px;
       font-size: 1rem;
     }
+
     .help-text {
       font-size: 0.875rem;
       color: #6c757d;
       float: right;
     }
+
     .modal-title {
       font-size: 1.5rem !important;
     }
+
     .modal-subtitle {
       font-size: 1rem;
       color: #6c757d;
       margin-bottom: 2rem;
     }
+
     .form-group label {
       font-weight: 600;
       margin-bottom: 0.5rem;
     }
+
     .or-divider {
       border-top: 1px solid #dee2e6;
       margin: 2rem 0;
       position: relative;
     }
+
     .or-divider::before {
       content: "O";
       background: white;
@@ -128,6 +161,7 @@
     }
   </style>
 </head>
+
 <body class="bg-gray-50 min-h-screen">
   <!-- Header con Gradiente -->
   <header class="bg-gradient-to-r from-green-600 via-teal-500 to-green-400 text-white shadow-lg">
@@ -139,18 +173,12 @@
         <span class="text-xl font-bold">Zen Zap</span>
       </div>
       <div class="flex space-x-4">
-        <button 
-          class="px-4 py-2 bg-white text-green-600 rounded-md hover:bg-green-50 transition-colors"
-          data-bs-toggle="modal" 
-          data-bs-target="#loginModal"
-        >
+        <button class="px-4 py-2 bg-white text-green-600 rounded-md hover:bg-green-50 transition-colors"
+          data-bs-toggle="modal" data-bs-target="#loginModal">
           Iniciar sesión
         </button>
-        <button 
-          class="px-4 py-2 bg-green-700 text-white rounded-md hover:bg-green-800 transition-colors"
-          data-bs-toggle="modal" 
-          data-bs-target="#registerModal"
-        >
+        <button class="px-4 py-2 bg-green-700 text-white rounded-md hover:bg-green-800 transition-colors"
+          data-bs-toggle="modal" data-bs-target="#registerModal">
           Crear cuenta
         </button>
       </div>
@@ -169,21 +197,21 @@
           Integración de salud mental y física para una vida laboral equilibrada.
         </p>
         <div class="flex flex-col sm:flex-row gap-4">
-          <button class="px-6 py-3 bg-gradient-to-r from-green-500 to-teal-500 text-white font-medium rounded-md hover:shadow-lg transition-all">
+          <button
+            class="px-6 py-3 bg-gradient-to-r from-green-500 to-teal-500 text-white font-medium rounded-md hover:shadow-lg transition-all">
             Ver carrusel
           </button>
-          <button class="px-6 py-3 border-2 border-green-500 text-green-700 font-medium rounded-md hover:bg-green-50 transition-all">
+          <a href="pagina_conocenos.html"
+            class="px-6 py-3 border-2 border-green-500 text-green-700 font-medium rounded-md hover:bg-green-50 transition-all">
             Conócenos
-          </button>
+          </a>
+
         </div>
       </div>
       <div class="md:w-1/2 relative">
         <div class="absolute inset-0 bg-green-500/10 rounded-full blur-xl"></div>
-        <img 
-          src="https://picsum.photos/600/400?random=1" 
-          alt="Meditación en la oficina" 
-          class="rounded-lg shadow-2xl relative z-10"
-        />
+        <img src="https://picsum.photos/600/400?random=1" alt="Meditación en la oficina"
+          class="rounded-lg shadow-2xl relative z-10" />
       </div>
     </div>
   </section>
@@ -197,7 +225,7 @@
           <h4 class="modal-title text-center mb-2">Iniciar Sesión</h4>
           <p class="modal-subtitle text-center mb-4">Transforma tu día con pausas activas</p>
           <a href="/auth/google" class="google-btn w-100 mb-4 d-flex align-items-center justify-content-center">
-            <i class="fab fa-google fs-5 me-2"></i> 
+            <i class="fab fa-google fs-5 me-2"></i>
             <span>Continuar con Google</span>
           </a>
           <div class="or-divider"></div>
@@ -216,7 +244,7 @@
             <button type="submit" class="btn btn-success w-100 mt-4">Ingresar</button>
           </form>
           <div class="text-center mt-4">
-            <p class="mb-0 text-muted">¿No tienes cuenta? 
+            <p class="mb-0 text-muted">¿No tienes cuenta?
               <a href="/register" class="text-decoration-none fw-bold text-success">Regístrate</a>
             </p>
           </div>
@@ -224,8 +252,9 @@
       </div>
     </div>
     <div class="text-center mt-4">
-      <p class="mb-0 text-muted">¿No tienes cuenta? 
-        <a href="#" class="text-decoration-none fw-bold text-success" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#registerModal">Regístrate</a>
+      <p class="mb-0 text-muted">¿No tienes cuenta?
+        <a href="#" class="text-decoration-none fw-bold text-success" data-bs-dismiss="modal" data-bs-toggle="modal"
+          data-bs-target="#registerModal">Regístrate</a>
       </p>
     </div>
   </div>
@@ -238,8 +267,9 @@
           <button type="button" class="btn-close float-end" data-bs-dismiss="modal" aria-label="Close"></button>
           <h4 class="modal-title text-center mb-2">Crear Cuenta</h4>
           <p class="modal-subtitle text-center mb-4">Únete a nuestra comunidad de bienestar</p>
-          <a href="/auth/google-register" class="google-btn w-100 mb-4 d-flex align-items-center justify-content-center">
-            <i class="fab fa-google fs-5 me-2"></i> 
+          <a href="/auth/google-register"
+            class="google-btn w-100 mb-4 d-flex align-items-center justify-content-center">
+            <i class="fab fa-google fs-5 me-2"></i>
             <span>Continuar con Google</span>
           </a>
           <div class="or-divider"></div>
@@ -267,8 +297,9 @@
             <button type="submit" class="btn btn-success w-100 mt-4">Crear cuenta</button>
           </form>
           <div class="text-center mt-4">
-            <p class="mb-0 text-muted">¿Ya tienes cuenta? 
-              <a href="#" class="text-decoration-none fw-bold text-success" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#loginModal">Inicia sesión</a>
+            <p class="mb-0 text-muted">¿Ya tienes cuenta?
+              <a href="#" class="text-decoration-none fw-bold text-success" data-bs-dismiss="modal"
+                data-bs-toggle="modal" data-bs-target="#loginModal">Inicia sesión</a>
             </p>
           </div>
         </div>
@@ -311,12 +342,14 @@
           </div>
         </div>
         <!-- Flechas -->
-        <button onclick="prevSlide()" class="absolute left-4 top-1/2 -translate-y-1/2 z-20 p-4 bg-black/50 text-white rounded-full hover:bg-black/70 transition-all">
+        <button onclick="prevSlide()"
+          class="absolute left-4 top-1/2 -translate-y-1/2 z-20 p-4 bg-black/50 text-white rounded-full hover:bg-black/70 transition-all">
           <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor">
             <path d="M15 19L9 12L15 5" />
           </svg>
         </button>
-        <button onclick="nextSlide()" class="absolute right-4 top-1/2 -translate-y-1/2 z-20 p-4 bg-black/50 text-white rounded-full hover:bg-black/70 transition-all">
+        <button onclick="nextSlide()"
+          class="absolute right-4 top-1/2 -translate-y-1/2 z-20 p-4 bg-black/50 text-white rounded-full hover:bg-black/70 transition-all">
           <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor">
             <path d="M9 19L15 12L9 5" />
           </svg>
@@ -357,7 +390,8 @@
         <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition-shadow">
           <div class="w-12 h-12 bg-green-100 text-green-600 rounded-full flex items-center justify-center mb-4">
             <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-              <path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+              <path
+                d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
             </svg>
           </div>
           <h3 class="text-xl font-bold text-gray-800 mb-2">Comunidad Motivadora</h3>
@@ -411,7 +445,8 @@
         <button class="px-8 py-4 bg-white text-green-600 font-bold rounded-md hover:bg-green-50 transition-colors">
           Prueba gratis por 7 días
         </button>
-        <button class="px-8 py-4 border-2 border-white text-white font-bold rounded-md hover:bg-white/10 transition-colors">
+        <button
+          class="px-8 py-4 border-2 border-white text-white font-bold rounded-md hover:bg-white/10 transition-colors">
           Conócenos más
         </button>
       </div>
@@ -424,7 +459,8 @@
       <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
         <div>
           <h3 class="text-xl font-bold mb-4">Zen Zap</h3>
-          <p class="text-gray-400">Mejora tu bienestar en el trabajo con nuestras pausas activas y ejercicios personalizados.</p>
+          <p class="text-gray-400">Mejora tu bienestar en el trabajo con nuestras pausas activas y ejercicios
+            personalizados.</p>
         </div>
         <div>
           <h3 class="text-lg font-semibold mb-4">Enlaces Rápidos</h3>
@@ -446,14 +482,26 @@
         <div>
           <h3 class="text-lg font-semibold mb-4">Síguenos</h3>
           <div class="flex space-x-4">
-            <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors">
-              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/></svg>
+            <a href="#"
+              class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" />
+              </svg>
             </a>
-            <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors">
-              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/></svg>
+            <a href="#"
+              class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z" />
+              </svg>
             </a>
-            <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors">
-              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.059-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.69.072 4.949.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.624 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM12 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zm0 10.162a3.998 3.998 0 110-7.997 3.998 3.998 0 010 7.997zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+            <a href="#"
+              class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.059-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.69.072 4.949.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.624 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM12 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zm0 10.162a3.998 3.998 0 110-7.997 3.998 3.998 0 010 7.997zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
+              </svg>
             </a>
           </div>
         </div>
@@ -518,7 +566,7 @@
     });
 
     // Script de registro
-    document.getElementById('registerForm').addEventListener('submit', function(e) {
+    document.getElementById('registerForm').addEventListener('submit', function (e) {
       e.preventDefault();
       alert('Registro simulado');
       const registerModal = bootstrap.Modal.getInstance(document.getElementById('registerModal'));
@@ -526,4 +574,5 @@
     });
   </script>
 </body>
+
 </html>
