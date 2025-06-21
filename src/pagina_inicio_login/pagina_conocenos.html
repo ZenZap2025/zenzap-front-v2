@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conócenos | Zen Zap</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f9fafa;
+            color: #1a1a1a;
+        }
+
+        header {
+            background: linear-gradient(90deg, #00b760, #00c4a7);
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        nav a {
+            color: white;
+            margin-left: 1rem;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .hero {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            padding: 4rem 2rem;
+            background-color: #ffffff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .hero-text {
+            max-width: 600px;
+        }
+
+        .hero-text h1 {
+            font-size: 2.5rem;
+            color: #1a1a1a;
+            margin-bottom: 1rem;
+        }
+
+        .hero-text span {
+            color: #00b760;
+        }
+
+        .hero-text p {
+            font-size: 1.1rem;
+            color: #444;
+        }
+
+        .hero-img img {
+            width: 100%;
+            max-width: 500px;
+            border-radius: 1rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .section {
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .section h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .team-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+
+        .team-member {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 1rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            max-width: 280px;
+            flex: 1 1 280px;
+            text-align: center;
+        }
+
+
+        .team-member img {
+            width: 100%;
+            border-radius: 50%;
+            margin-bottom: 1rem;
+        }
+
+        .team-member h4 {
+            margin: 0.5rem 0 0.2rem;
+            color: #1a1a1a;
+        }
+
+        .team-member {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 1rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            max-width: 320px;
+            /* antes: 280px */
+            flex: 1 1 320px;
+            /* antes: 1 1 280px */
+            text-align: center;
+        }
+
+
+        footer {
+            background-color: #131c2b;
+            color: #fff;
+            padding: 2rem;
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        footer a {
+            color: #00c48c;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo">Zen Zap</div>
+        <nav>
+            <a href="pagina_inicio_final.html">Inicio</a>
+            <a href="#equipo">Nuestro equipo</a>
+            <a href="#historia">Historia</a>
+            <a href="#mision">Misión</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-text">
+            <h1>Conócenos y <span>vive el cambio</span></h1>
+            <p>En Zen Zap, creemos que el bienestar en el trabajo no es un lujo, sino una necesidad. Nuestro equipo está
+                comprometido con ayudarte a integrar pausas activas en tu rutina diaria.</p>
+        </div>
+        <div class="hero-img">
+            <img src="https://picsum.photos/seed/zenzap/500/300" alt="Equipo Zen Zap">
+        </div>
+    </section>
+
+    <section class="section" id="historia">
+        <h2>Nuestra Historia</h2>
+        <p>Zen Zap nació en 2025 con la visión de transformar la salud ocupacional mediante tecnología y empatía.
+            Comenzamos como un pequeño proyecto y hoy somos una comunidad de miles de personas comprometidas con su
+            bienestar diario.</p>
+    </section>
+
+    <section class="section" id="mision">
+        <h2>Misión y Valores</h2>
+        <p>Nuestra misión es ayudarte a encontrar equilibrio entre productividad y salud. Promovemos la inclusión, el
+            autocuidado, y el compromiso constante con el bienestar físico y mental.</p>
+    </section>
+
+    <section class="section" id="equipo">
+        <h2>Conoce a nuestro equipo</h2>
+        <div class="team-grid">
+            <div class="team-member">
+                <img src="https://picsum.photos/seed/person1/200" alt="Michelle Ramirez">
+                <h4>Michelle Ramirez</h4>
+                <p>Pendeja</p>
+            </div>
+            <div class="team-member">
+                <img src="https://picsum.photos/seed/person2/200" alt="Sebastian Taborda">
+                <h4>Sebastian Taborda</h4>
+                <p>El mejorr</p>
+            </div>
+            <div class="team-member">
+                <img src="https://picsum.photos/seed/person3/200" alt="Yoskar Ordosgoitti">
+                <h4>Yoskar Ordosgoitti</h4>
+                <p>El veneco</p>
+            </div>
+
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Zen Zap. Todos los derechos reservados. <a href="#">Política de privacidad</a></p>
+    </footer>
+</body>
+
+</html>
