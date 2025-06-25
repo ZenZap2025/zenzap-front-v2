@@ -7,185 +7,55 @@
   <title>Zen Zap - Bienvenida</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- FontAwesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
   <style>
-    /* Estilos originales de la home */
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-
-    /* Ajustes para el carrusel */
-    #carouselWrapper {
-      position: relative;
-      /* Contenedor relativo */
-      height: 450px;
-      /* Altura fija */
-    }
-
-    .carousel-slide {
-      position: absolute;
-      /* Superposición de slides */
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 450px;
-      /* Misma altura */
-      background-size: cover;
-      background-position: center;
-      opacity: 0;
-      /* Oculto por defecto */
-      transition: opacity 0.5s ease-in-out;
-    }
-
-    .carousel-slide:first-child {
-      opacity: 1;
-      /* Muestra el primer slide al cargar */
-    }
-
-    @keyframes typing {
-      from {
-        width: 0
-      }
-
-      to {
-        width: 100%
-      }
-    }
-
-    .typing {
-      overflow: hidden;
-      white-space: nowrap;
-      border-right: 2px solid;
-      animation: typing 3s steps(40, end);
-    }
-
-    .carousel-indicators {
-      position: absolute;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      gap: 12px;
-    }
-
-    .carousel-indicator {
-      width: 12px;
-      height: 12px;
-      background-color: #ffffff33;
-      border-radius: 50%;
-      cursor: pointer;
-    }
-
-    .carousel-indicator.active {
-      background-color: white;
-    }
-
-    /* Estilos del formulario de login/reg */
-    .login-modal {
-      max-width: 400px !important;
-      border-radius: 1rem;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-
-    .modal-content {
-      border-radius: 1rem !important;
-    }
-
-    .google-btn {
-      border: 2px solid #28A745;
-      color: #212529;
-      transition: all 0.3s ease;
-      border-radius: 0.3rem;
-      padding: 12px 16px;
-    }
-
-    .google-btn:hover {
-      background-color: #28A745;
-      color: white;
-    }
-
-    .btn-success {
-      background-color: #28A745;
-      border-color: #28A745;
-      border-radius: 0.3rem;
-      transition: all 0.3s ease;
-      padding: 12px 24px;
-    }
-
-    .btn-success:hover {
-      box-shadow: 0 4px 8px rgba(0, 162, 90, 0.3);
-    }
-
-    .form-input {
-      border: 1px solid #dee2e6;
-      border-radius: 0.3rem;
-      padding: 12px;
-      font-size: 1rem;
-    }
-
-    .help-text {
-      font-size: 0.875rem;
-      color: #6c757d;
-      float: right;
-    }
-
-    .modal-title {
-      font-size: 1.5rem !important;
-    }
-
-    .modal-subtitle {
-      font-size: 1rem;
-      color: #6c757d;
-      margin-bottom: 2rem;
-    }
-
-    .form-group label {
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-    }
-
-    .or-divider {
-      border-top: 1px solid #dee2e6;
-      margin: 2rem 0;
-      position: relative;
-    }
-
-    .or-divider::before {
-      content: "O";
-      background: white;
-      position: absolute;
-      top: -10px;
-      left: 50%;
-      transform: translateX(-50%);
-      padding: 0 12px;
-      font-weight: 600;
-    }
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+    #carouselWrapper { position: relative; height: 450px; }
+    .carousel-slide { position: absolute; top: 0; left: 0; width: 100%; height: 450px; background-size: cover; background-position: center; opacity: 0; transition: opacity 0.5s ease-in-out; }
+    .carousel-slide:first-child { opacity: 1; }
+    @keyframes typing { from { width: 0 } to { width: 100% } }
+    .typing { overflow: hidden; white-space: nowrap; border-right: 2px solid; animation: typing 3s steps(40,end); }
+    .carousel-indicators { position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); display: flex; gap: 12px; }
+    .carousel-indicator { width: 12px; height: 12px; background-color: #ffffff33; border-radius: 50%; cursor: pointer; }
+    .carousel-indicator.active { background-color: white; }
+    .login-modal { max-width: 400px !important; border-radius: 1rem; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+    .modal-content { border-radius: 1rem !important; }
+    .google-btn { border: 2px solid #28A745; color: #212529; transition: all .3s ease; border-radius: .3rem; padding: 12px 16px; }
+    .google-btn:hover { background-color: #28A745; color: white; }
+    .btn-success { background-color: #28A745; border-color: #28A745; border-radius: .3rem; transition: all .3s ease; padding: 12px 24px; }
+    .btn-success:hover { box-shadow: 0 4px 8px rgba(0,162,90,.3); }
+    .form-input { border: 1px solid #dee2e6; border-radius: .3rem; padding: 12px; font-size: 1rem; }
+    .help-text { font-size: .875rem; color: #6c757d; float: right; }
+    .modal-title { font-size: 1.5rem !important; }
+    .modal-subtitle { font-size: 1rem; color: #6c757d; margin-bottom: 2rem; }
+    .form-group label { font-weight: 600; margin-bottom: .5rem; }
+    .or-divider { border-top: 1px solid #dee2e6; margin: 2rem 0; position: relative; }
+    .or-divider::before { content: "O"; background: white; position: absolute; top: -10px; left: 50%; transform: translateX(-50%); padding: 0 12px; font-weight: 600; }
   </style>
 </head>
 
 <body class="bg-gray-50 min-h-screen">
-  <!-- Header con Gradiente -->
+
+  <!-- Header -->
   <header class="bg-gradient-to-r from-green-600 via-teal-500 to-green-400 text-white shadow-lg">
-    <div class="max-w-6xl mx-auto px-6 py-5 flex justify-between items-center">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
       <div class="flex items-center space-x-3">
         <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center">
           <span class="text-green-600 font-bold text-xl">Z</span>
         </div>
-        <span class="text-xl font-bold">Zen Zap</span>
+        <span class="text-2xl font-bold">ZenZap</span>
       </div>
       <div class="flex space-x-4">
-        <button class="px-4 py-2 bg-white text-green-600 rounded-md hover:bg-green-50 transition-colors"
-          data-bs-toggle="modal" data-bs-target="#loginModal">
-          Iniciar sesión
-        </button>
-        <button class="px-4 py-2 bg-green-700 text-white rounded-md hover:bg-green-800 transition-colors"
-          data-bs-toggle="modal" data-bs-target="#registerModal">
-          Crear cuenta
-        </button>
+        <button class="px-4 py-2 bg-white text-green-600 rounded-md hover:bg-green-50" data-bs-toggle="modal"
+          data-bs-target="#loginModal">Iniciar sesión</button>
+        <button class="px-4 py-2 bg-green-700 text-white rounded-md hover:bg-green-800" data-bs-toggle="modal"
+          data-bs-target="#registerModal">Crear cuenta</button>
       </div>
     </div>
   </header>
 
-  <!-- Hero Section con Animación -->
+  <!-- Hero -->
   <section class="max-w-6xl mx-auto px-6 py-20">
     <div class="flex flex-col md:flex-row items-center justify-between gap-12">
       <div class="md:w-1/2 space-y-6">
@@ -193,168 +63,153 @@
           <span class="block">Transforma tu bienestar</span>
           <span class="block text-green-600 typing">con pausas activas</span>
         </h1>
-        <p class="text-lg text-gray-600">
-          Integración de salud mental y física para una vida laboral equilibrada.
-        </p>
+        <p class="text-lg text-gray-600">Integración de salud mental y física para una vida laboral equilibrada.</p>
         <div class="flex flex-col sm:flex-row gap-4">
-          <button
-            class="px-6 py-3 bg-gradient-to-r from-green-500 to-teal-500 text-white font-medium rounded-md hover:shadow-lg transition-all">
-            Ver carrusel
-          </button>
+          <a href="#carousel"
+            class="px-6 py-3 bg-gradient-to-r from-green-500 to-teal-500 text-white rounded-md">Ver carrusel</a>
           <a href="pagina_conocenos.html"
-            class="px-6 py-3 border-2 border-green-500 text-green-700 font-medium rounded-md hover:bg-green-50 transition-all">
-            Conócenos
-          </a>
-
+            class="px-6 py-3 border-2 border-green-500 text-green-700 rounded-md">Conócenos</a>
         </div>
       </div>
       <div class="md:w-1/2 relative">
         <div class="absolute inset-0 bg-green-500/10 rounded-full blur-xl"></div>
-        <img src="https://picsum.photos/600/400?random=1" alt="Meditación en la oficina"
-          class="rounded-lg shadow-2xl relative z-10" />
+        <img src="https://picsum.photos/600/400?random=1" alt="Meditación" class="rounded-lg shadow-2xl relative z-10" />
       </div>
     </div>
   </section>
 
-  <!-- Modal de Inicio de Sesión -->
-  <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+  <!-- Modales -->
+  <!-- Login -->
+  <div class="modal fade" id="loginModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered login-modal">
       <div class="modal-content">
         <div class="modal-body p-6">
-          <button type="button" class="btn-close float-end" data-bs-dismiss="modal" aria-label="Close"></button>
+          <button type="button" class="btn-close float-end" data-bs-dismiss="modal"></button>
           <h4 class="modal-title text-center mb-2">Iniciar Sesión</h4>
-          <p class="modal-subtitle text-center mb-4">Transforma tu día con pausas activas</p>
-          <a href="/auth/google" class="google-btn w-100 mb-4 d-flex align-items-center justify-content-center">
-            <i class="fab fa-google fs-5 me-2"></i>
-            <span>Continuar con Google</span>
-          </a>
+          <p class="modal-subtitle text-center mb-4">Transforma tu día</p>
+          <a href="/auth/google"
+            class="google-btn w-100 mb-4 d-flex align-items-center justify-content-center"><i
+              class="fab fa-google fs-5 me-2"></i>Continuar con Google</a>
           <div class="or-divider"></div>
           <form id="loginForm">
             <div class="mb-4">
-              <label for="email" class="form-group label">Email</label>
-              <input type="email" class="form-input w-full" id="email" required>
+              <label for="loginEmail" class="form-group label">Email</label>
+              <input type="email" class="form-input w-full" id="loginEmail" required>
             </div>
             <div class="mb-4">
-              <label for="password" class="form-group label">Contraseña</label>
-              <input type="password" class="form-input w-full" id="password" required>
-              <div class="help-text mt-2">
-                <a href="/forgot-password" class="text-decoration-none text-muted">¿Olvidaste tu contraseña?</a>
-              </div>
+              <label for="loginPassword" class="form-group label">Contraseña</label>
+              <input type="password" class="form-input w-full" id="loginPassword" required>
+              <div class="help-text mt-2"><a href="#" class="text-muted" data-bs-toggle="modal"
+                  data-bs-target="#forgotModal" data-bs-dismiss="modal">¿Olvidaste tu contraseña?</a></div>
             </div>
-            <button type="submit" class="btn btn-success w-100 mt-4">Ingresar</button>
+            <button type="submit" class="btn btn-success w-100">Ingresar</button>
           </form>
-          <div class="text-center mt-4">
-            <p class="mb-0 text-muted">¿No tienes cuenta?
-              <a href="/register" class="text-decoration-none fw-bold text-success">Regístrate</a>
-            </p>
-          </div>
+          <p class="text-center mt-4 text-muted">¿No tienes cuenta?
+            <a href="#" class="text-success fw-bold" data-bs-toggle="modal" data-bs-target="#registerModal"
+              data-bs-dismiss="modal">Regístrate</a>
+          </p>
         </div>
       </div>
     </div>
-    <div class="text-center mt-4">
-      <p class="mb-0 text-muted">¿No tienes cuenta?
-        <a href="#" class="text-decoration-none fw-bold text-success" data-bs-dismiss="modal" data-bs-toggle="modal"
-          data-bs-target="#registerModal">Regístrate</a>
-      </p>
-    </div>
   </div>
-
-  <!-- Modal de Registro -->
-  <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
+  <!-- Register -->
+  <div class="modal fade" id="registerModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered login-modal">
-      <div class="modal-content rounded-3">
+      <div class="modal-content">
         <div class="modal-body p-6">
-          <button type="button" class="btn-close float-end" data-bs-dismiss="modal" aria-label="Close"></button>
+          <button type="button" class="btn-close float-end" data-bs-dismiss="modal"></button>
           <h4 class="modal-title text-center mb-2">Crear Cuenta</h4>
-          <p class="modal-subtitle text-center mb-4">Únete a nuestra comunidad de bienestar</p>
+          <p class="modal-subtitle text-center mb-4">Únete a nuestra comunidad</p>
           <a href="/auth/google-register"
-            class="google-btn w-100 mb-4 d-flex align-items-center justify-content-center">
-            <i class="fab fa-google fs-5 me-2"></i>
-            <span>Continuar con Google</span>
-          </a>
+            class="google-btn w-100 mb-4 d-flex align-items-center justify-content-center"><i
+              class="fab fa-google fs-5 me-2"></i>Continuar con Google</a>
           <div class="or-divider"></div>
           <form id="registerForm">
             <div class="mb-4">
-              <label for="name" class="form-group label">Nombre completo</label>
-              <input type="text" class="form-input w-full" id="name" required>
+              <label for="regName" class="form-group label">Nombre completo</label>
+              <input type="text" class="form-input w-full" id="regName" required>
             </div>
             <div class="mb-4">
-              <label for="email" class="form-group label">Email</label>
-              <input type="email" class="form-input w-full" id="email" required>
+              <label for="regEmail" class="form-group label">Email</label>
+              <input type="email" class="form-input w-full" id="regEmail" required>
             </div>
             <div class="mb-4">
-              <label for="birthdate" class="form-group label">Fecha de nacimiento</label>
-              <input type="date" class="form-input w-full" id="birthdate" required>
+              <label for="regBirthdate" class="form-group label">Fecha de nacimiento</label>
+              <input type="date" class="form-input w-full" id="regBirthdate" required>
             </div>
             <div class="mb-4">
-              <label for="password" class="form-group label">Contraseña</label>
-              <input type="password" class="form-input w-full" id="password" required>
+              <label for="regPassword" class="form-group label">Contraseña</label>
+              <input type="password" class="form-input w-full" id="regPassword" required>
             </div>
             <div class="mb-4">
-              <label for="passwordConfirm" class="form-group label">Confirmar contraseña</label>
-              <input type="password" class="form-input w-full" id="passwordConfirm" required>
+              <label for="regPasswordConfirm" class="form-group label">Confirmar contraseña</label>
+              <input type="password" class="form-input w-full" id="regPasswordConfirm" required>
             </div>
-            <button type="submit" class="btn btn-success w-100 mt-4">Crear cuenta</button>
+            <button type="submit" class="btn btn-success w-100">Crear cuenta</button>
           </form>
-          <div class="text-center mt-4">
-            <p class="mb-0 text-muted">¿Ya tienes cuenta?
-              <a href="#" class="text-decoration-none fw-bold text-success" data-bs-dismiss="modal"
-                data-bs-toggle="modal" data-bs-target="#loginModal">Inicia sesión</a>
-            </p>
-          </div>
+          <p class="text-center mt-4 text-muted">¿Ya tienes cuenta?
+            <a href="#" class="text-success fw-bold" data-bs-toggle="modal" data-bs-target="#loginModal"
+              data-bs-dismiss="modal">Inicia sesión</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Forgot Password -->
+  <div class="modal fade" id="forgotModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered login-modal">
+      <div class="modal-content">
+        <div class="modal-body p-6">
+          <button type="button" class="btn-close float-end" data-bs-dismiss="modal"></button>
+          <h4 class="modal-title text-center mb-2">Recuperar Contraseña</h4>
+          <p class="modal-subtitle text-center mb-4">Ingresa tu correo:</p>
+          <form id="forgotForm">
+            <div class="mb-4">
+              <label for="forgotEmail" class="form-group label">Email</label>
+              <input type="email" class="form-input w-full" id="forgotEmail" required>
+            </div>
+            <button type="submit" class="btn btn-success w-100">Enviar</button>
+          </form>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Carrusel Dinámico -->
+  <!-- Carrusel -->
   <section id="carousel" class="py-20 bg-white">
     <div class="max-w-6xl mx-auto px-6">
       <h2 class="text-3xl font-bold text-center text-gray-800 mb-10">Recomendaciones de Salud</h2>
       <div class="relative overflow-hidden">
         <div id="carouselWrapper">
-          <!-- Slide 1 -->
-          <div class="carousel-slide" style="background-image: url('https://picsum.photos/1200/400?random=2')">
+          <div class="carousel-slide" style="background-image:url('https://picsum.photos/1200/400?random=2')">
             <div class="absolute inset-0 bg-black/60 flex items-center justify-center">
-              <div class="text-center text-white px-6">
+              <div class="text-white text-center px-6">
                 <h3 class="text-3xl font-bold mb-3">Pausas Activas</h3>
-                <p class="text-lg max-w-md mx-auto">Estiramientos rápidos para aliviar el estrés en la oficina</p>
+                <p>Estiramientos rápidos para aliviar el estrés en la oficina</p>
               </div>
             </div>
           </div>
-          <!-- Slide 2 -->
-          <div class="carousel-slide" style="background-image: url('https://picsum.photos/1200/400?random=3')">
+          <div class="carousel-slide" style="background-image:url('https://picsum.photos/1200/400?random=3')">
             <div class="absolute inset-0 bg-black/60 flex items-center justify-center">
-              <div class="text-center text-white px-6">
+              <div class="text-white text-center px-6">
                 <h3 class="text-3xl font-bold mb-3">Respiración Guiada</h3>
-                <p class="text-lg max-w-md mx-auto">Técnicas para reducir la ansiedad en minutos</p>
+                <p>Técnicas para reducir la ansiedad en minutos</p>
               </div>
             </div>
           </div>
-          <!-- Slide 3 -->
-          <div class="carousel-slide" style="background-image: url('https://picsum.photos/1200/400?random=4')">
+          <div class="carousel-slide" style="background-image:url('https://picsum.photos/1200/400?random=4')">
             <div class="absolute inset-0 bg-black/60 flex items-center justify-center">
-              <div class="text-center text-white px-6">
+              <div class="text-white text-center px-6">
                 <h3 class="text-3xl font-bold mb-3">Ergonomía Básica</h3>
-                <p class="text-lg max-w-md mx-auto">Ajusta tu espacio de trabajo para prevenir lesiones</p>
+                <p>Ajusta tu espacio de trabajo para prevenir lesiones</p>
               </div>
             </div>
           </div>
         </div>
-        <!-- Flechas -->
         <button onclick="prevSlide()"
-          class="absolute left-4 top-1/2 -translate-y-1/2 z-20 p-4 bg-black/50 text-white rounded-full hover:bg-black/70 transition-all">
-          <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-            <path d="M15 19L9 12L15 5" />
-          </svg>
-        </button>
+          class="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 p-4 rounded-full text-white">‹</button>
         <button onclick="nextSlide()"
-          class="absolute right-4 top-1/2 -translate-y-1/2 z-20 p-4 bg-black/50 text-white rounded-full hover:bg-black/70 transition-all">
-          <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-            <path d="M9 19L15 12L9 5" />
-          </svg>
-        </button>
-        <!-- Indicadores -->
+          class="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 p-4 rounded-full text-white">›</button>
         <div class="carousel-indicators">
           <div class="carousel-indicator active"></div>
           <div class="carousel-indicator"></div>
@@ -401,32 +256,34 @@
     </div>
   </section>
 
-  <!-- Sección de Testimonios -->
+
+  <!-- Testimonios -->
   <section class="py-20 bg-white">
     <div class="max-w-6xl mx-auto px-6">
       <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">Lo que dicen nuestros usuarios</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div class="bg-green-50 p-6 rounded-xl shadow-md">
           <div class="flex items-center mb-4">
-            <img src="https://picsum.photos/100/100?random=5" alt="Usuario" class="w-12 h-12 rounded-full mr-4" />
+            <i class="fas fa-user-circle fa-2x text-gray-600 mr-4"></i>
             <div>
-              <h4 class="font-semibold text-gray-800">María G.</h4>
-              <div class="flex text-yellow-400">★★★★★</div>
+              <p class="font-semibold">María G.</p>
+              <div class="text-yellow-400">★★★★★</div>
             </div>
           </div>
-          <p class="text-gray-600 italic">
-            "¡Mi productividad aumentó un 40%! Las pausas activas me ayudan a mantenerme enfocada durante todo el día."
+          <p class="italic text-gray-600">
+            "¡Mi productividad aumentó un 40%! Las pausas activas me ayudan a mantenerme
+            enfocada durante todo el día."
           </p>
         </div>
         <div class="bg-green-50 p-6 rounded-xl shadow-md">
           <div class="flex items-center mb-4">
-            <img src="https://picsum.photos/100/100?random=6" alt="Usuario" class="w-12 h-12 rounded-full mr-4" />
+            <i class="fas fa-user-circle fa-2x text-gray-600 mr-4"></i>
             <div>
-              <h4 class="font-semibold text-gray-800">Carlos M.</h4>
-              <div class="flex text-yellow-400">★★★★★</div>
+              <p class="font-semibold">Carlos M.</p>
+              <div class="text-yellow-400">★★★★★</div>
             </div>
           </div>
-          <p class="text-gray-600 italic">
+          <p class="italic text-gray-600">
             "La meditación guiada me cambió la vida. Ahora duermo mejor y tengo menos estrés."
           </p>
         </div>
@@ -438,140 +295,78 @@
   <section class="py-20 bg-gradient-to-r from-green-600 to-teal-500 text-white">
     <div class="max-w-4xl mx-auto px-6 text-center">
       <h2 class="text-3xl font-bold mb-6">¡Empieza hoy tu cambio!</h2>
-      <p class="text-xl mb-8">
-        Únete a miles de personas que ya transformaron su rutina laboral.
-      </p>
+      <p class="text-xl mb-8">Únete a miles de personas que ya transformaron su rutina laboral.</p>
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <button class="px-8 py-4 bg-white text-green-600 font-bold rounded-md hover:bg-green-50 transition-colors">
-          Prueba gratis por 7 días
-        </button>
-        <button
-          class="px-8 py-4 border-2 border-white text-white font-bold rounded-md hover:bg-white/10 transition-colors">
-          Conócenos más
-        </button>
+        <a href="pagina_conocenos.html"
+          class="px-8 py-4 border-2 border-white font-bold rounded-md hover:bg-white/10">Conócenos más</a>
       </div>
     </div>
   </section>
 
-  <!-- Footer -->
-  <footer class="bg-gray-800 py-12 text-white">
-    <div class="max-w-6xl mx-auto px-6">
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-        <div>
-          <h3 class="text-xl font-bold mb-4">Zen Zap</h3>
-          <p class="text-gray-400">Mejora tu bienestar en el trabajo con nuestras pausas activas y ejercicios
-            personalizados.</p>
-        </div>
-        <div>
-          <h3 class="text-lg font-semibold mb-4">Enlaces Rápidos</h3>
-          <ul class="space-y-2 text-gray-400">
-            <li><a href="#" class="hover:text-green-400">Inicio</a></li>
-            <li><a href="#" class="hover:text-green-400">Carrusel</a></li>
-            <li><a href="#" class="hover:text-green-400">Conócenos</a></li>
-            <li><a href="#" class="hover:text-green-400">Contacto</a></li>
-          </ul>
-        </div>
-        <div>
-          <h3 class="text-lg font-semibold mb-4">Legal</h3>
-          <ul class="space-y-2 text-gray-400">
-            <li><a href="#" class="hover:text-green-400">Términos</a></li>
-            <li><a href="#" class="hover:text-green-400">Privacidad</a></li>
-            <li><a href="#" class="hover:text-green-400">Cookies</a></li>
-          </ul>
-        </div>
-        <div>
-          <h3 class="text-lg font-semibold mb-4">Síguenos</h3>
-          <div class="flex space-x-4">
-            <a href="#"
-              class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors">
-              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
-                <path
-                  d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" />
-              </svg>
-            </a>
-            <a href="#"
-              class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors">
-              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
-                <path
-                  d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z" />
-              </svg>
-            </a>
-            <a href="#"
-              class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors">
-              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
-                <path
-                  d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.059-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.69.072 4.949.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.624 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM12 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zm0 10.162a3.998 3.998 0 110-7.997 3.998 3.998 0 010 7.997zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
-              </svg>
-            </a>
-          </div>
-        </div>
-      </div>
-      <div class="mt-8 pt-4 border-t border-gray-700 text-sm text-gray-400 text-center">
-        &copy; 2023 Zen Zap. Todos los derechos reservados.
+  <!-- Footer reorganizado y con iconos -->
+<footer class="bg-gray-900 text-gray-300">
+  <div class="max-w-6xl mx-auto px-6 py-12 flex flex-col md:flex-row justify-between items-start md:items-center space-y-8 md:space-y-0">
+    <!-- Logo + Descripción -->
+    <div class="text-center md:text-left md:w-1/3">
+      <h3 class="text-xl font-bold text-white mb-2">Zen Zap</h3>
+      <p>Mejora tu bienestar con nuestras pausas activas y ejercicios personalizados.</p>
+    </div>
+    <!-- Legal -->
+    <div class="text-center md:text-left md:w-1/3">
+      <h3 class="font-semibold text-white mb-2">Legal</h3>
+      <ul class="space-y-2">
+        <li><a href="#" class="hover:text-green-400">Términos</a></li>
+        <li><a href="#" class="hover:text-green-400">Privacidad</a></li>
+        <li><a href="#" class="hover:text-green-400">Cookies</a></li>
+      </ul>
+    </div>
+    <!-- Redes -->
+    <div class="text-center md:text-right md:w-1/3">
+      <h3 class="font-semibold text-white mb-2">Síguenos</h3>
+      <div class="inline-flex space-x-4">
+        <a href="https://facebook.com" target="_blank"
+           class="bg-gray-800 p-2 rounded hover:bg-gray-700 transition">
+          <i class="fa-brands fa-facebook-square text-xl text-gray-300 hover:text-white"></i>
+        </a>
+        <a href="https://twitter.com" target="_blank"
+           class="bg-gray-800 p-2 rounded hover:bg-gray-700 transition">
+          <i class="fa-brands fa-twitter-square text-xl text-gray-300 hover:text-white"></i>
+        </a>
+        <a href="https://instagram.com" target="_blank"
+           class="bg-gray-800 p-2 rounded hover:bg-gray-700 transition">
+          <i class="fa-brands fa-instagram-square text-xl text-gray-300 hover:text-white"></i>
+        </a>
       </div>
     </div>
-  </footer>
-
+  </div>
+  <div class="border-t border-gray-800 text-center py-4 text-sm">
+    © 2025 Zen Zap. Todos los derechos reservados.
+  </div>
+</footer>
   <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
   <script>
     let currentSlide = 0;
     const slides = document.querySelectorAll('#carouselWrapper > .carousel-slide');
-    const totalSlides = slides.length;
     const indicators = document.querySelectorAll('.carousel-indicator');
-
-    function showSlide(index) {
-      currentSlide = index;
-      slides.forEach((slide, i) => {
-        slide.style.opacity = i === currentSlide ? '1' : '0';
-      });
-      indicators.forEach((indicator, i) => {
-        indicator.classList.toggle('active', i === currentSlide);
-      });
+    function showSlide(i) {
+      slides.forEach((s, idx) => s.style.opacity = idx === i ? '1' : '0');
+      indicators.forEach((ind, idx) => ind.classList.toggle('active', idx === i));
+      currentSlide = i;
     }
-
-    function nextSlide() {
-      const nextIndex = (currentSlide + 1) % totalSlides;
-      showSlide(nextIndex);
-    }
-
-    function prevSlide() {
-      const prevIndex = (currentSlide - 1 + totalSlides) % totalSlides;
-      showSlide(prevIndex);
-    }
-
-    // Autoplay con pausa al pasar el mouse
-    let autoplayInterval;
-    function startAutoplay() {
-      autoplayInterval = setInterval(nextSlide, 5000);
-    }
-    function stopAutoplay() {
-      clearInterval(autoplayInterval);
-    }
-
-    document.getElementById('carousel').addEventListener('mouseenter', stopAutoplay);
-    document.getElementById('carousel').addEventListener('mouseleave', startAutoplay);
-
-    window.addEventListener('load', () => {
-      showSlide(0);
-      startAutoplay();
-    });
-
-    // Controladores de indicadores
-    indicators.forEach((indicator, i) => {
-      indicator.addEventListener('click', () => {
-        showSlide(i);
-      });
-    });
-
-    // Script de registro
-    document.getElementById('registerForm').addEventListener('submit', function (e) {
-      e.preventDefault();
-      alert('Registro simulado');
-      const registerModal = bootstrap.Modal.getInstance(document.getElementById('registerModal'));
-      registerModal.hide();
-    });
+    function nextSlide() { showSlide((currentSlide + 1) % slides.length); }
+    function prevSlide() { showSlide((currentSlide - 1 + slides.length) % slides.length); }
+    let auto;
+    function startAuto() { auto = setInterval(nextSlide, 5000); }
+    document.getElementById('carousel').addEventListener('mouseenter', () => clearInterval(auto));
+    document.getElementById('carousel').addEventListener('mouseleave', startAuto);
+    window.addEventListener('load', () => { showSlide(0); startAuto(); });
+    indicators.forEach((el, idx) => el.addEventListener('click', () => showSlide(idx)));
+    // Simulación de formularios
+    document.getElementById('loginForm').addEventListener('submit', e => { e.preventDefault(); alert('Login simulado'); });
+    document.getElementById('registerForm').addEventListener('submit', e => { e.preventDefault(); alert('Registro simulado'); });
+    document.getElementById('forgotForm').addEventListener('submit', e => { e.preventDefault(); alert('Email enviado'); });
   </script>
 </body>
 
