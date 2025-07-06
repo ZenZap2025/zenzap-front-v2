@@ -29,30 +29,37 @@
 
     /* Sidebar */
     .sidebar {
-      position: fixed; top: 0; left: 0;
-      width: var(--sidebar-width); height: 100vh;
+      position: fixed; top: 0; left: 0; bottom: 0;
+      width: var(--sidebar-width);
       background: var(--sidebar-bg); color: var(--sidebar-text);
-      padding: 2rem 1.5rem 1rem; overflow-y: auto;
-      transition: width var(--transition); z-index: 1000;
+      padding: 1rem 1.5rem 1rem; transition: width var(--transition);
+      z-index: 1000;
     }
     .layout--collapsed .sidebar { width: var(--sidebar-collapsed-width); }
+
+    /* Toggle fijo al borde */
     .sidebar__toggle {
-      position: absolute; top: 1rem; right: -1.5rem;
-      width: 3rem; height: 3rem; background: var(--accent);
-      color: #fff; border-radius: 50%; display: flex;
-      align-items: center; justify-content: center;
-      cursor: pointer; font-size: 1.25rem;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-      z-index: 1001; transition: background var(--transition);
+      position: fixed; top: 1rem;
+      left: var(--sidebar-width);
+      width: 2.5rem; height: 2.5rem;
+      background: var(--accent); border: none; color: #fff;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      transition: left var(--transition);
+      z-index: 1001;
     }
-    .sidebar__toggle:hover { background: #43a047; }
+    .layout--collapsed .sidebar__toggle {
+      left: var(--sidebar-collapsed-width);
+    }
+
     .sidebar__title {
-      margin-bottom: 1.5rem; font-size: 1.25rem;
+      margin: 2rem 0 1.5rem; font-size: 1.25rem;
       color: var(--accent); white-space: nowrap;
     }
     .layout--collapsed .sidebar__title,
     .layout--collapsed .sidebar__text { display: none; }
-    .sidebar__nav { list-style: none; margin-top: 2rem; }
+    .sidebar__nav { list-style: none; margin-top: 1rem; }
     .sidebar__item { margin-bottom: 1rem; }
     .sidebar__link {
       display: flex; align-items: center; gap: .75rem;
@@ -67,11 +74,12 @@
       position: fixed; top: 0;
       left: var(--sidebar-width); right: 0;
       height: 4.5rem; padding: 0 2rem;
-      background: linear-gradient(to right, #16A34A, #14B8A6, #16A34A);
+      background: linear-gradient(to right, #16A34A, #14B8A6);
       color: #fff; display: flex;
       align-items: center; justify-content: space-between;
       box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-      transition: left var(--transition); z-index: 1001;
+      transition: left var(--transition);
+      z-index: 1000;
     }
     .layout--collapsed .navbar { left: var(--sidebar-collapsed-width); }
     .navbar__logo { display: flex; align-items: center; gap: .5rem; }
@@ -90,13 +98,22 @@
       box-shadow: 0 2px 8px rgba(0,0,0,0.15);
       overflow: hidden; opacity: 0; visibility: hidden;
       transform: translateY(-10px);
-      transition: opacity var(--transition), transform var(--transition), visibility var(--transition);
-      z-index: 1002;
+      transition: opacity var(--transition),
+                  transform var(--transition),
+                  visibility var(--transition);
+      z-index: 1001;
     }
-    .user-dropdown.open { opacity: 1; visibility: visible; transform: translateY(0); }
-    .user-dropdown a { display: block; padding: .75rem 1.25rem; color: #333; text-decoration: none; }
+    .user-dropdown.open {
+      opacity: 1; visibility: visible; transform: translateY(0);
+    }
+    .user-dropdown a {
+      display: block; padding: .75rem 1.25rem;
+      color: #333; text-decoration: none;
+    }
     .user-dropdown a:hover { background: #f0f0f0; }
-    .user-dropdown .divider { height: 1px; background: #e0e0e0; margin: .25rem 0; }
+    .user-dropdown .divider {
+      height: 1px; background: #e0e0e0; margin: .25rem 0;
+    }
 
     /* Main */
     .main {
@@ -122,7 +139,8 @@
     }
     .subcat-card:hover { background: #e8f5e9; transform: translateY(-3px); }
     .subcat-card.active {
-      background: var(--subcat-active-bg); box-shadow: 0 4px 6px var(--card-shadow);
+      background: var(--subcat-active-bg);
+      box-shadow: 0 4px 6px var(--card-shadow);
     }
 
     /* Exercises */
@@ -137,7 +155,8 @@
     .exercise:hover { transform: translateY(-5px); }
     .exercise__img { width: 100%; height: 180px; object-fit: cover; }
     .exercise__body {
-      padding: 1rem; display: flex; flex-direction: column; justify-content: space-between; flex: 1;
+      padding: 1rem; display: flex; flex-direction: column;
+      justify-content: space-between; flex: 1;
     }
     .exercise__body h3 { margin: 0 0 .5rem; font-size: 1.1rem; }
     .exercise__body p { margin: 0 0 .75rem; color: #555; flex: 1; }
@@ -156,9 +175,7 @@
     #player-container { margin: 2rem 1rem 0; }
     #player-container.hidden { display: none; }
     .aspect-w-16 { width: 100%; }
-    .aspect-h-9 {
-      position: relative; padding-bottom: 56.25%;
-    }
+    .aspect-h-9 { position: relative; padding-bottom: 56.25%; }
     #video-player {
       position: absolute; top: 0; left: 0;
       width: 100%; height: 100%; border: none;
@@ -168,23 +185,44 @@
     footer {
       background: #131c2b; color: #ccc; padding: 2rem 1rem; margin-top: 2rem;
     }
+    .footer-content {
+      max-width: 6xl; margin: 0 auto;
+      display: flex; flex-wrap: wrap;
+      justify-content: space-between; align-items: center; gap: 1rem;
+    }
+    .footer-content .logo-text {
+      display: flex; align-items: center; gap: .5rem; font-weight: bold;
+    }
+    .footer-content nav a {
+      margin: 0 .5rem; color: #ccc; text-decoration: none;
+    }
+    .footer-content nav a:hover { color: #fff; }
+    .social-icons a {
+      margin: 0 .25rem; font-size: 1.5rem; color: #ccc;
+    }
+    .social-icons a:hover { color: #fff; }
   </style>
 </head>
 <body>
+
   <div class="layout" id="appLayout">
+    <!-- Sidebar -->
     <aside class="sidebar">
-      <button id="toggleSidebar" class="sidebar__toggle">☰</button>
+      <button id="toggleSidebar" class="sidebar__toggle">
+        <i class="fa-solid fa-bars"></i>
+      </button>
       <h1 class="sidebar__title">Mejora tu vida</h1>
       <ul class="sidebar__nav">
-        <li><a href="#" class="sidebar__link" data-category-id="3"><i class="sidebar__icon">🧘</i><span class="sidebar__text">Relajación</span></a></li>
-        <li><a href="#" class="sidebar__link" data-category-id="1"><i class="sidebar__icon">💨</i><span class="sidebar__text">Respiración</span></a></li>
-        <li><a href="#" class="sidebar__link" data-category-id="2"><i class="sidebar__icon">🧎</i><span class="sidebar__text">Yoga Suave</span></a></li>
-        <li><a href="#" class="sidebar__link" data-category-id="4"><i class="sidebar__icon">🚶</i><span class="sidebar__text">Pausas Activas</span></a></li>
-        <li><a href="../pagina_tienda/pagina__tienda.html" class="sidebar__link"><i class="sidebar__icon">🛒</i><span class="sidebar__text">Tienda</span></a></li>
-        <li><a href="#" class="sidebar__link"><i class="sidebar__icon">⏏️</i><span class="sidebar__text">Cerrar Sesión</span></a></li>
+        <li><a href="#" class="sidebar__link" data-category-id="3"><span class="sidebar__icon">🧘</span><span class="sidebar__text">Relajación</span></a></li>
+        <li><a href="#" class="sidebar__link" data-category-id="1"><span class="sidebar__icon">💨</span><span class="sidebar__text">Respiración</span></a></li>
+        <li><a href="#" class="sidebar__link" data-category-id="2"><span class="sidebar__icon">🧎</span><span class="sidebar__text">Yoga Suave</span></a></li>
+        <li><a href="#" class="sidebar__link" data-category-id="4"><span class="sidebar__icon">🚶</span><span class="sidebar__text">Pausas Activas</span></a></li>
+        <li><a href="/pagina_tienda/pagina__tienda.html" class="sidebar__link"><span class="sidebar__icon">🛒</span><span class="sidebar__text">Tienda</span></a></li>
+        <li><a href="http://localhost:5500/pagina_inicio_login/pagina_inicio_final.html" class="sidebar__link"><span class="sidebar__icon">⏏️</span><span class="sidebar__text">Cerrar Sesión</span></a></li>
       </ul>
     </aside>
 
+    <!-- Navbar -->
     <header class="navbar">
       <div class="navbar__logo">
         <div class="logo-circle"><span class="text-green-600 font-bold">Z</span></div><span>ZenZap</span>
@@ -192,13 +230,14 @@
       <div class="navbar__user" id="userMenu">
         <img src="https://picsum.photos/30/30" alt="Usuario"><span>Usuario</span>
         <div class="user-dropdown" id="userDropdown">
-          <a href="pagina_configuracion_perfil.html">Configuración de perfil</a>
+          <a href="/pagina_principal/pagina_configuracion_perfil.html">Configuración de perfil</a>
           <div class="divider"></div>
-          <a href="#" style="color:#d32f2f;">Cerrar sesión</a>
+          <a href="http://localhost:5500/pagina_inicio_login/pagina_inicio_final.html" style="color:#d32f2f;">Cerrar sesión</a>
         </div>
       </div>
     </header>
 
+    <!-- Main -->
     <main class="main">
       <section class="welcome mb-8">
         <h1>Bienvenido de vuelta</h1>
@@ -224,11 +263,12 @@
     </main>
   </div>
 
+  <!-- Footer -->
   <footer>
     <div class="footer-content container mx-auto flex flex-col md:flex-row justify-between items-center py-8">
       <div class="logo-text">
-        <div class="w-8 h-8 rounded-full bg-white flex items-center justify-center"><span class="text-green-600 font-bold">Z</span></div>
-        <span>© 2025 Zen Zap</span>
+        <div class="w-8 h-8 rounded-full bg-white flex items-center justify-right bg-gray-200 mr-4"><span class="text-green-600 font-bold">Z</span></div>
+        <span></span>
       </div>
       <nav>
         <a href="#" class="hover:text-white">Política de privacidad</a>
@@ -243,58 +283,60 @@
   </footer>
 
   <script>
+    // Sidebar toggle
     const layout = document.getElementById('appLayout');
     document.getElementById('toggleSidebar').onclick = () => {
       layout.classList.toggle('layout--collapsed');
       localStorage.setItem('sidebarCollapsed', layout.classList.contains('layout--collapsed'));
     };
+
+    // User dropdown
     document.getElementById('userMenu').onclick = e => {
       e.stopPropagation();
       document.getElementById('userDropdown').classList.toggle('open');
     };
-    document.addEventListener('click', () => document.getElementById('userDropdown').classList.remove('open'));
-    if (localStorage.getItem('sidebarCollapsed') === 'true') layout.classList.add('layout--collapsed');
+    document.addEventListener('click', () => {
+      document.getElementById('userDropdown').classList.remove('open');
+    });
+    if (localStorage.getItem('sidebarCollapsed') === 'true') {
+      layout.classList.add('layout--collapsed');
+    }
 
     const API_BASE = 'http://localhost:8080';
 
-    // Al cargar, simular click en Pausas Activas y luego en Manos
-    document.addEventListener('DOMContentLoaded', async () => {
+    // Auto-load “Pausas Activas → Manos” on start
+    document.addEventListener('DOMContentLoaded', () => {
       document.querySelector('.sidebar__link[data-category-id="4"]').click();
-      // esperar un tick para que subcats aparezca
       setTimeout(() => {
-        const manos = document.querySelector('.subcat-card[data-subcategory-id="5"]');
-        manos && manos.click();
+        document.querySelector('.subcat-card[data-subcategory-id="5"]')?.click();
       }, 100);
     });
 
-    // Categorías principales
+    // Main categories
     document.querySelectorAll('.sidebar__link[data-category-id]').forEach(link => {
       link.onclick = async e => {
         e.preventDefault();
-        const id = link.dataset.categoryId;
+        const cat = link.dataset.categoryId;
         const titles = {
           '1':'Respiración recomendada',
           '2':'Yoga Suave recomendada',
           '3':'Relajación recomendada',
           '4':'Pausas Activas recomendadas'
         };
-        document.getElementById('recommended-title').textContent = titles[id];
-        document.getElementById('subcats').style.display = (id==='4')?'flex':'none';
-        // limpiar active subcats
-        document.querySelectorAll('.subcat-card').forEach(c=>c.classList.remove('active'));
-        if (id!=='4') document.getElementById('exercises-container').innerHTML = '';
-        await loadVideos(id);
+        document.getElementById('recommended-title').textContent = titles[cat];
+        document.getElementById('subcats').style.display = (cat==='4') ? 'flex' : 'none';
+        document.getElementById('exercises-container').innerHTML = '';
+        await loadVideos(cat);
       };
     });
 
-    // Subcategorías
+    // Subcategories
     document.querySelectorAll('.subcat-card[data-subcategory-id]').forEach(card => {
       card.onclick = async () => {
-        document.querySelectorAll('.subcat-card').forEach(c=>c.classList.remove('active'));
+        document.querySelectorAll('.subcat-card').forEach(c => c.classList.remove('active'));
         card.classList.add('active');
-        const subId = card.dataset.subcategoryId;
         document.getElementById('recommended-title').textContent = card.textContent + ' recomendada';
-        await loadVideos(null, subId);
+        await loadVideos(null, card.dataset.subcategoryId);
       };
     });
 
@@ -320,8 +362,8 @@
           </div>`;
         cont.appendChild(div);
       });
-      document.querySelectorAll('.play-btn').forEach(btn => {
-        btn.onclick = () => playVideo(btn.dataset.url);
+      document.querySelectorAll('.play-btn').forEach(b => {
+        b.onclick = () => playVideo(b.dataset.url);
       });
     }
 
@@ -332,7 +374,6 @@
       document.getElementById('player-container').classList.remove('hidden');
       ifr.scrollIntoView({ behavior:'smooth' });
     }
-
     function extractId(u) {
       const m = u.match(/v=([^&]+)/);
       return m ? m[1] : '';
@@ -341,26 +382,8 @@
       const m = Math.floor(s/60), sec = s%60;
       return `${m}m ${sec}s`;
     }
-    console.log("🌐 URL actual:", window.location.href);
-
-    document.addEventListener('DOMContentLoaded', () => {
-      const params = new URLSearchParams(window.location.search);
-      const userIdParam = params.get('userId');
-
-      if (userIdParam) {
-        localStorage.setItem('userId', userIdParam);
-        console.log("🔑 ID guardado desde URL:", userIdParam);
-        window.history.replaceState({}, document.title, window.location.pathname);
-      }
-
-      const userId = localStorage.getItem('userId');
-      console.log("🔑 ID actual:", userId);
-
-      if (!userId) {
-        alert("❌ No hay sesión activa. Por favor inicia sesión.");
-        window.location.href = "http://localhost:5500/src/pagina_inicio_login/pagina_inicio_final.html";
-      }
-    });
   </script>
+
 </body>
 </html>
+

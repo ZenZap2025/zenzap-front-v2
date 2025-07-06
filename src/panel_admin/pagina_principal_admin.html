@@ -121,20 +121,23 @@
     </main>
   </div>
 
-  <!-- Modal Usuario -->
-  <div class="modal fade" id="userModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-sm modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Administrador</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-        </div>
-        <div class="modal-body text-center">
-          <button class="btn btn-danger w-100" onclick="logout()">Cerrar sesión</button>
-        </div>
+ <!-- Modal Usuario -->
+<div class="modal fade" id="userModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-sm modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Administrador</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body text-center">
+        <button class="btn btn-danger w-100" onclick="window.location.href='http://localhost:5500/pagina_inicio_login/pagina_inicio_final.html'">
+          Cerrar sesión
+        </button>
       </div>
     </div>
   </div>
+</div>
+
 
   <!-- Modal Nuevo Video -->
   <div class="modal fade" id="newVideoModal" tabindex="-1" aria-hidden="true">
