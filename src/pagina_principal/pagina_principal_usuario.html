@@ -341,6 +341,26 @@
       const m = Math.floor(s/60), sec = s%60;
       return `${m}m ${sec}s`;
     }
+    console.log("🌐 URL actual:", window.location.href);
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const params = new URLSearchParams(window.location.search);
+      const userIdParam = params.get('userId');
+
+      if (userIdParam) {
+        localStorage.setItem('userId', userIdParam);
+        console.log("🔑 ID guardado desde URL:", userIdParam);
+        window.history.replaceState({}, document.title, window.location.pathname);
+      }
+
+      const userId = localStorage.getItem('userId');
+      console.log("🔑 ID actual:", userId);
+
+      if (!userId) {
+        alert("❌ No hay sesión activa. Por favor inicia sesión.");
+        window.location.href = "http://localhost:5500/src/pagina_inicio_login/pagina_inicio_final.html";
+      }
+    });
   </script>
 </body>
 </html>

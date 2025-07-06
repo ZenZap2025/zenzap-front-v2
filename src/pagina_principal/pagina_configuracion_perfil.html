@@ -69,10 +69,19 @@
   </main>
 
   <script>
+    const params = new URLSearchParams(window.location.search);
+    const userIdParam = params.get('userId');
+    if (userIdParam) {
+      localStorage.setItem('userId', userIdParam);
+      console.log('🔑 ID guardado desde URL (configuración):', userIdParam);
+      window.history.replaceState({}, document.title, window.location.pathname);
+    }
     const userId = localStorage.getItem('userId');
+    console.log("id del usuario logueado", userId);
+
     if (!userId) {
       alert('❌ No se encontró sesión activa. Vuelve a iniciar sesión.');
-      window.location.href = "URL_DE_TU_LOGIN.html";
+      window.location.href = "login.html";
     }
     console.log("id del usuario logueado", userId)
     const usernameInput = document.getElementById('username');
