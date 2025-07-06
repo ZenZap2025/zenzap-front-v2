@@ -64,6 +64,7 @@
         </div>
         <button type="submit" class="btn btn-reset w-100">Restablecer</button>
         <div id="successMsg" class="success-text d-none">¡Contraseña cambiada con éxito!</div>
+        <div id="apiError" class="error-text d-none text-center mt-2"></div>
       </form>
     </div>
   </div>
@@ -75,33 +76,63 @@
     const newPassError = document.getElementById('newPassError');
     const matchError = document.getElementById('matchError');
     const successMsg = document.getElementById('successMsg');
+    const apiError = document.getElementById('apiError');
 
-    form.addEventListener('submit', function(e) {
+    form.addEventListener('submit', async function(e) {
       e.preventDefault();
-      // reset errors
+      // Reset mensajes
       newPassError.classList.add('d-none');
       matchError.classList.add('d-none');
       successMsg.classList.add('d-none');
+      apiError.classList.add('d-none');
 
       let valid = true;
 
-      // contraseña mínima
+      // Validar mínimo
       if (newPass.value.length < 6) {
         newPassError.classList.remove('d-none');
         valid = false;
       }
-      // comparacion
+
+      // Validar coincidencia
       if (newPass.value !== confirmPass.value) {
         matchError.classList.remove('d-none');
         valid = false;
       }
 
       if (valid) {
-        // Aquí iría la llamada al backend para cambiar la contraseña,
-        // ej: fetch('/api/auth/reset', { method:'POST', body: JSON.stringify({ token, password: newPass.value }) })
-        // Por ahora simulamos éxito:
-        successMsg.classList.remove('d-none');
-        form.reset();
+        // Obtener token de la URL
+        const params = new URLSearchParams(window.location.search);
+        const token = params.get('token');
+
+        if (!token) {
+          apiError.innerText = 'Token inválido o faltante.';
+          apiError.classList.remove('d-none');
+          return;
+        }
+
+        try {
+          const response = await fetch('http://localhost:8080/api/auth/reset-password', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              token: token,
+              newPassword: newPass.value
+            })
+          });
+
+          if (response.ok) {
+            successMsg.classList.remove('d-none');
+            form.reset();
+          } else {
+            const errorText = await response.text();
+            apiError.innerText = `❌ ${errorText}`;
+            apiError.classList.remove('d-none');
+          }
+        } catch (err) {
+          apiError.innerText = 'Error de red. Intenta nuevamente.';
+          apiError.classList.remove('d-none');
+        }
       }
     });
   </script>

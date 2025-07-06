@@ -26,47 +26,124 @@
     <div class="flex items-center gap-6 mb-8">
       <img src="https://i.pravatar.cc/100" alt="Foto de perfil" class="w-20 h-20 rounded-full shadow">
       <div>
-        <p class="text-lg font-medium text-gray-700">Nombre del usuario</p>
+        <p id="usernameDisplay" class="text-lg font-medium text-gray-700">Nombre del usuario</p>
         <p class="text-sm text-gray-500">Editar imagen próximamente...</p>
       </div>
     </div>
 
     <!-- Formulario -->
-    <form class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <form id="profileForm" class="grid grid-cols-1 md:grid-cols-2 gap-6">
       <div>
         <label class="block text-gray-700 font-medium mb-2">Nombre completo</label>
-        <input type="text" placeholder="Escribe tu nombre completo" class="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-400">
+        <input type="text" id="username" placeholder="Escribe tu nombre completo" class="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-400">
       </div>
 
       <div>
         <label class="block text-gray-700 font-medium mb-2">Correo electrónico</label>
-        <input type="email" value="correo@ejemplo.com" readonly class="w-full p-3 border rounded-md bg-gray-100 text-gray-500 cursor-not-allowed">
+        <input type="email" id="email" readonly class="w-full p-3 border rounded-md bg-gray-100 text-gray-500 cursor-not-allowed">
       </div>
 
       <div>
         <label class="block text-gray-700 font-medium mb-2">Fecha de nacimiento</label>
-        <input type="date" class="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-400">
+        <input type="date" id="birthday" class="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-400">
       </div>
 
-      <div></div> <!-- Espacio vacío para alinear correctamente -->
-
-      <div>
-        <label class="block text-gray-700 font-medium mb-2">Contraseña actual</label>
-        <input type="password" placeholder="••••••••" class="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-400">
-      </div>
+      <div></div> <!-- Espacio vacío -->
 
       <div>
         <label class="block text-gray-700 font-medium mb-2">Nueva contraseña</label>
-        <input type="password" placeholder="••••••••" class="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-400">
+        <input type="password" id="newPassword" placeholder="••••••••" class="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-400">
+      </div>
+
+      <div>
+        <label class="block text-gray-700 font-medium mb-2">Confirmar nueva contraseña</label>
+        <input type="password" id="confirmNewPassword" placeholder="••••••••" class="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-400">
       </div>
     </form>
 
     <!-- Botones -->
     <div class="mt-8 flex justify-end gap-4">
-      <button class="px-6 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-100 transition">Cancelar</button>
-      <button class="px-6 py-2 bg-green-500 text-white rounded-md hover:bg-green-600 transition">Guardar cambios</button>
+      <button id="cancelBtn" class="px-6 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-100 transition">Cancelar</button>
+      <button id="saveBtn" class="px-6 py-2 bg-green-500 text-white rounded-md hover:bg-green-600 transition">Guardar cambios</button>
     </div>
   </main>
+
+  <script>
+    const userId = localStorage.getItem('userId');
+    if (!userId) {
+      alert('❌ No se encontró sesión activa. Vuelve a iniciar sesión.');
+      window.location.href = "URL_DE_TU_LOGIN.html";
+    }
+    console.log("id del usuario logueado", userId)
+    const usernameInput = document.getElementById('username');
+    const emailInput = document.getElementById('email');
+    const birthdayInput = document.getElementById('birthday');
+    const newPasswordInput = document.getElementById('newPassword');
+    const confirmNewPasswordInput = document.getElementById('confirmNewPassword');
+    const usernameDisplay = document.getElementById('usernameDisplay');
+
+    // ✅ Cargar info cuando la página abra
+    window.addEventListener('DOMContentLoaded', async () => {
+      try {
+        const response = await fetch(`http://localhost:8080/api/auth/user/${userId}`);
+        if (response.ok) {
+          const user = await response.json();
+          usernameInput.value = user.username;
+          emailInput.value = user.email;
+          birthdayInput.value = user.birthday;
+          usernameDisplay.textContent = user.username;
+        } else {
+          alert('❌ No se pudo cargar la información del usuario.');
+        }
+      } catch (err) {
+        alert('❌ Error de red al cargar perfil.');
+      }
+    });
+
+    // ✅ Guardar cambios
+    document.getElementById('saveBtn').addEventListener('click', async () => {
+      const username = usernameInput.value.trim();
+      const email = emailInput.value.trim();
+      const birthday = birthdayInput.value.trim();
+      const newPassword = newPasswordInput.value.trim();
+      const confirmNewPassword = confirmNewPasswordInput.value.trim();
+
+      if (newPassword && newPassword !== confirmNewPassword) {
+        alert('❌ Las contraseñas nuevas no coinciden.');
+        return;
+      }
+
+      const payload = {
+        username,
+        email,
+        birthday,
+        newPassword: newPassword || null,
+        confirmNewPassword: confirmNewPassword || null
+      };
+
+      try {
+        const response = await fetch(`http://localhost:8080/api/auth/update/${userId}`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+
+        if (response.ok) {
+          alert('✅ Perfil actualizado correctamente.');
+          location.reload();
+        } else {
+          const errorText = await response.text();
+          alert(`❌ ${errorText}`);
+        }
+      } catch (err) {
+        alert('❌ Error de red al actualizar perfil.');
+      }
+    });
+
+    // ✅ Cancelar → recargar para descartar cambios
+    document.getElementById('cancelBtn').addEventListener('click', () => {
+      location.reload();
+    });
+  </script>
 </body>
 </html>
-
