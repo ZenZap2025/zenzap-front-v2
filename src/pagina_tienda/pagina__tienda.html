@@ -14,26 +14,17 @@
             --accent: #4CAF50;
             --transition: 0.3s ease;
         }
-
         * {
             box-sizing: border-box;
             margin: 0;
-            padding: 0;
-        }
-
+            padding: 0; }
         html,
         body {
             font-family: 'Segoe UI', sans-serif;
             background: #f5f5f5;
-            overflow-x: hidden;
-        }
-
-        /* Layout */
+            overflow-x: hidden; }
         .layout {
-            display: flex;
-        }
-
-        /* Sidebar */
+            display: flex; }
         .sidebar {
             position: fixed;
             top: 0;
@@ -45,13 +36,9 @@
             padding: 2rem 1.5rem 1rem;
             overflow-y: auto;
             transition: width var(--transition);
-            z-index: 1000;
-        }
-
+            z-index: 1000; }
         .layout--collapsed .sidebar {
-            width: var(--sidebar-collapsed-width);
-        }
-
+            width: var(--sidebar-collapsed-width);}
         .sidebar__toggle {
             position: absolute;
             top: 1rem;
@@ -67,55 +54,48 @@
             cursor: pointer;
             font-size: 1.25rem;
             box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-            z-index: 1001;
-            transition: background var(--transition);
-        }
-
+            z-index: 1001;}
         .sidebar__toggle:hover {
-            background: #43a047;
-        }
-
+            background: #43a047;}
         .sidebar__title {
             margin-bottom: 1.5rem;
             font-size: 1.25rem;
             color: var(--accent);
             white-space: nowrap;
-        }
-
+            display: flex;
+            align-items: center;
+            gap: 0.5rem; }
+        .logo-circle {
+            width: 2rem;
+            height: 2rem;
+            background: #fff;
+            color: #333;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold; }
         .layout--collapsed .sidebar__title,
         .layout--collapsed .sidebar__text {
-            display: none;
-        }
-
+            display: none; }
         .sidebar__nav {
             list-style: none;
-            margin-top: 2rem;
-        }
-
+            margin-top: 2rem;}
         .sidebar__item {
-            margin-bottom: 1rem;
-        }
-
+            margin-bottom: 1rem; }
         .sidebar__link {
             display: flex;
             align-items: center;
-            gap: 0.75rem;
+            gap: .75rem;
             color: inherit;
             text-decoration: none;
             white-space: nowrap;
-            transition: color var(--transition), transform var(--transition);
-        }
-
+            transition: color var(--transition), transform var(--transition); }
         .sidebar__link:hover {
             color: var(--accent);
-            transform: translateX(5px);
-        }
-
+            transform: translateX(5px);}
         .sidebar__icon {
-            font-size: 1.2rem;
-        }
-
-        /* Navbar */
+            font-size: 1.2rem;}
         .navbar {
             position: fixed;
             top: 0;
@@ -130,32 +110,54 @@
             justify-content: space-between;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             transition: left var(--transition);
-            z-index: 1001;
-        }
-
+            z-index: 1001;}
         .layout--collapsed .navbar {
-            left: var(--sidebar-collapsed-width);
-        }
-
-        .navbar__logo img {
-            height: 30px;
-        }
-
+            left: var(--sidebar-collapsed-width); }
+        .navbar__logo {
+            display: flex;
+            align-items: center;
+            gap: .5rem;}
+        .navbar__text {
+            font-weight: bold;
+            font-size: 1.2rem;}
+        .navbar__right {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;}
+        .navbar__cart {
+            position: relative;
+            font-size: 1.5rem;
+            margin-right: 1rem;
+            cursor: pointer;
+            color: #fff;
+            display: flex;
+            align-items: center;}
+        #cart-count {
+            position: absolute;
+            top: -8px;
+            right: -10px;
+            background-color: red;
+            color: white;
+            font-size: 0.65rem;
+            padding: 2px 6px;
+            border-radius: 50%;
+            font-weight: bold;
+            line-height: 1;
+            min-width: 18px;
+            text-align: center;
+            box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s ease;}
         .navbar__user {
             position: relative;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: .5rem;
             cursor: pointer;
-            user-select: none;
-        }
-
-        .navbar__user img {
-            width: 30px;
-            height: 30px;
+            user-select: none;}
+        .user-avatar {
             border-radius: 50%;
-        }
-
+            width: 32px;
+            height: 32px;}
         .user-dropdown {
             position: absolute;
             top: 110%;
@@ -169,466 +171,251 @@
             visibility: hidden;
             transform: translateY(-10px);
             transition: opacity var(--transition), transform var(--transition), visibility var(--transition);
-            z-index: 1002;
-        }
-
+            z-index: 1002; }
         .user-dropdown.open {
             opacity: 1;
             visibility: visible;
-            transform: translateY(0);
-        }
-
+            transform: translateY(0);}
         .user-dropdown a {
             display: block;
-            padding: 0.75rem 1.25rem;
+            padding: .75rem 1.25rem;
             color: #333;
-            text-decoration: none;
-            transition: background var(--transition);
-        }
-
+            text-decoration: none;}
         .user-dropdown a:hover {
-            background: #f0f0f0;
-        }
-
+            background: #f0f0f0;}
         .user-dropdown .divider {
             height: 1px;
             background: #e0e0e0;
-            margin: 0.25rem 0;
-        }
-
-        /* Main content */
+            margin: .25rem 0;}
         .main {
             margin-top: 4.5rem;
             margin-left: var(--sidebar-width);
             padding: 2rem;
             transition: margin-left var(--transition);
             min-height: calc(100vh - 4.5rem);
-            background: #fff;
-        }
-
+            background: #fff;}
         .layout--collapsed .main {
-            margin-left: var(--sidebar-collapsed-width);
-        }
-
-        /* Welcome section */
+            margin-left: var(--sidebar-collapsed-width);}
         .welcome h1 {
             font-size: 2rem;
-            margin-bottom: 0.5rem;
-        }
-
+            margin-bottom: 0.5rem;}
         .welcome p {
             color: #555;
         }
-
-
-        .card {
-            background: #f9f9f9;
-            border-radius: 8px;
-            padding: 1.25rem;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            transition: transform var(--transition);
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-        }
-
-        .card__icon {
-            width: 3rem;
-            height: 3rem;
-            margin: 0 auto 1rem;
-            background: #e8f5e9;
-            color: var(--accent);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.25rem;
-        }
-
-        .card__title {
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-
-        .card__text {
-            color: #666;
-            font-size: 0.9rem;
-        }
-
-        /* Pausas recomendadas */
         .section-title {
             font-size: 1.5rem;
             margin: 2rem 0 1rem;
-            color: #333;
-        }
-
+            color: #333;}
         .exercises {
             display: flex;
             flex-wrap: wrap;
-            gap: 1rem;
-        }
-
+            gap: 1rem;}
         .exercise {
-            background: #f9f9f9;
+            background: white;
             border-radius: 8px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.1);
             overflow: hidden;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            flex: 1 1 280px;
             display: flex;
             flex-direction: column;
-            transition: transform var(--transition);
-        }
-
+            height: 100%;}
+        .exercise:hover {
+            transform: translateY(-5px);}
         .product-image {
             width: 100%;
-            height: 160px;
+            height: 260px; 
             object-fit: cover;
-        }
-
-        .product-info {
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+            display: block;}
+        .exercise__body {
             padding: 1rem;
+            flex-grow: 1;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
-            flex-grow: 1;
-        }
-
+            justify-content: space-between;}
         .product-title {
-            font-size: 1.1rem;
-            margin: 0 0 0.5rem;
             font-weight: 600;
-        }
-
+            margin-bottom: .5rem; }
         .product-description {
-            font-size: 0.9rem;
-            color: #666;
-            margin-bottom: 1rem;
-        }
-
+            flex-grow: 1;
+            color: #555;
+            font-size: 0.9rem;}
         .product-footer {
+            margin-top: 1rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-
         .product-price {
             font-weight: bold;
-            font-size: 1rem;
-        }
-
+            color: var(--accent);}
         .add-to-cart {
-            background-color: #10b981;
-            color: white;
+            background: var(--accent);
+            color: #fff;
             border: none;
-            padding: 0.4rem 0.8rem;
+            padding: .5rem 1rem;
             border-radius: 4px;
-            cursor: pointer;
-            font-size: 0.85rem;
-            transition: background 0.2s;
-        }
-
-        .add-to-cart:hover {
-            background-color: #0e9e6e;
-        }
-
-        .exercise:hover {
-            transform: translateY(-5px);
-        }
-
-        .exercise__img {
-            width: 100%;
-            height: 160px;
-            object-fit: cover;
-        }
-
-        .exercise__body {
-            padding: 1rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            flex: 1;
-        }
-
-        .exercise__body h3 {
-            margin: 0;
-            font-size: 1.1rem;
-        }
-
-        .exercise__body p {
-            margin: 0.5rem 0;
+            cursor: pointer;}
+        .product-stock {
             color: #555;
             font-size: 0.9rem;
-        }
-
-        .badge {
-            background: #e8f5e9;
-            color: var(--accent);
-            padding: 0.25rem 0.5rem;
-            border-radius: 4px;
-            font-size: 0.75rem;
-            display: inline-block;
-        }
-
-        .details-link {
-            font-size: 0.9rem;
-            color: var(--accent);
-            text-decoration: none;
-            font-weight: 500;
-        }
-
-        /* Footer */
+            margin: 0.25rem 0 0.5rem;}
         .footer {
-            background: #fff;
-            padding: 1rem 2rem;
+            background: #1a1a1a;
+            color: #fff;
             text-align: center;
-            font-size: 0.9rem;
-            color: #777;
-            box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
-            margin-top: 2rem;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .sidebar {
-                position: relative;
-                width: 100%;
-                height: auto;
-                padding-bottom: 1rem;
-            }
-
-            .sidebar__toggle {
-                display: none;
-            }
-
-            .navbar {
-                left: 0;
-            }
-
-            .main {
-                margin-left: 0;
-            }
-
-            .categories {
-                grid-template-columns: 1fr;
-            }
-
-            .exercises {
-                flex-direction: column;
-            }
-        }
+            padding: 1rem;}
+        .toast {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            background-color: #4CAF50;
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 6px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            font-weight: 500;
+            opacity: 0;
+            transform: translateY(-20px);
+            pointer-events: none;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            z-index: 9999;}
+        .toast.show {
+            opacity: 1;
+            transform: translateY(0);}
     </style>
 </head>
 
 <body>
-    <div class="layout" id="appLayout">
+    <div class="layout">
         <!-- Sidebar -->
         <aside class="sidebar">
-            <button id="toggleSidebar" class="sidebar__toggle" aria-label="Ocultar/Mostrar menú">☰</button>
-            <h2 class="sidebar__title">Pausas Activas</h2>
+            <div class="sidebar__title">
+                <span class="sidebar__text">Menu</span>
+            </div>
             <ul class="sidebar__nav">
-                <li class="sidebar__item"><a href="../pagina_princial/pagina_principal_usuario.html"
-                        class="sidebar__link"><span class="sidebar__icon">🧘</span><span
-                            class="sidebar__text">Inicio</span></a></li>
-
+                <li class="sidebar__item">
+                    <a href="../pagina_principal/pagina_principal_usuario.html" class="sidebar__link">
+                        <span class="sidebar__icon">🏠</span>
+                        <span class="sidebar__text">Inicio</span>
+                    </a>
+                </li>
             </ul>
+            <div class="sidebar__toggle" onclick="toggleSidebar()">☰</div>
         </aside>
 
         <!-- Navbar -->
         <header class="navbar">
-            <div class="navbar__logo"><img src="https://via.placeholder.com/120x30?text=Zen+Zap" alt="Logo Zen Zap">
+            <div class="navbar__logo">
+                <div class="logo-circle">Z</div>
+                <span class="navbar__text">Zenzap Shop</span>
             </div>
-            <div class="navbar__user" id="userMenu">
-                <img src="https://picsum.photos/30/30" alt="Usuario">
-                <span>Usuario</span>
-                <div class="user-dropdown" id="userDropdown">
-                    <a href="../pagina_princial/pagina_configuracion_perfil.html">Configuración de perfil</a>
-                    <div class="divider"></div>
-                    <a href="#" style="color:#d32f2f;">Cerrar sesión</a>
+            <div class="navbar__right">
+                <div class="navbar__cart" onclick="window.location.href='pagina_carrito.html'">
+                    🛒<span id="cart-count" style="margin-left: 4px; font-weight: bold;">0</span>
+                </div>
+                <div class="navbar__user" onclick="toggleDropdown()">
+                    <img src="https://i.pravatar.cc/40" alt="Usuario" class="user-avatar" />
+                    <span>Usuario</span>
+                    <div class="user-dropdown" id="userDropdown">
+                        <a href="#">Mi perfil</a>
+                        <a href="../pagina_principal/pagina_configuracion_perfil.html">Configuración</a>
+                        <div class="divider"></div>
+                        <a href="#">Cerrar sesión</a>
+                    </div>
                 </div>
             </div>
         </header>
 
+        <!-- Contenido -->
         <main class="main">
             <section class="welcome">
-                <h1>Bienvenido a tienda ZenZap</h1>
-                <p>siemppre es un buen día para cuidar tu bienestar</p>
+                <h1>Bienvenido a ZenZap</h1>
+                <p>Tu tienda para hacer pausas activas mientras trabajas</p>
             </section>
 
-
-            <h2 class="section-title">Productos ZenZap</h2>
-            <div class="filters-container"
-                style="display: flex; justify-content: space-between; align-items: center; max-width: 900px; margin: 0 auto 20px; gap: 10px;">
-                <input type="text" placeholder="Buscar por nombre..." class="search-input"
-                    style="flex: 1; padding: 10px; border: 1px solid #ccc; border-radius: 8px;">
-                <select class="category-filter" style="padding: 10px; border: 1px solid #ccc; border-radius: 8px;">
-                    <option value="all">Todas las categorías</option>
-                    <option value="yoga">Yoga</option>
-                    <option value="masaje">Masaje</option>
-                    <option value="ejercicio">Ejercicio</option>
-                    <!-- Agrega más si es necesario -->
-                </select>
-            </div>
-            <section class="exercises">
-                <div class="exercise">
-                    <img class="exercise__img" src="https://picsum.photos/seed/1/400/200" alt="Estiramiento de cuello">
-                    <div class="exercise__body">
-                        <h3 class="product-title">Rodillo de espuma</h3>
-                        <p class="product-description">Ideal para relajar musculos despues del trabajar.</p>
-                        <div class="product-footer">
-                            <span class="product-price">$35.00</span>
-                            <button class="add-to-cart">Añadir al carrito</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="exercise">
-                    <img class="exercise__img" src="https://picsum.photos/seed/2/400/200" alt="Sentadillas suaves">
-                    <div class="exercise__body">
-                        <h3 class="product-title">Banda de resistencia</h3>
-                        <p class="product-description">Perfecta para estiramientos y ejercicios ligeros en la oficina.
-                        </p>
-                        <div class="product-footer">
-                            <span class="product-price">$25.00</span>
-                            <button class="add-to-cart">Añadir al carrito</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="exercise">
-                    <img class="exercise__img" src="https://picsum.photos/seed/4/400/200" alt="Mini pedalera portátil">
-                    <div class="exercise__body">
-                        <h3 class="product-title">Mini pedalera portátil</h3>
-                        <p class="product-description">Activa la circulación de tus piernas mientras trabajas sentado.
-                        </p>
-                        <div class="product-footer">
-                            <span class="product-price">$79.00</span>
-                            <button class="add-to-cart">Añadir al carrito</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="exercise">
-                    <img class="exercise__img" src="https://picsum.photos/seed/5/400/200"
-                        alt="Almohadilla lumbar ergonómica">
-                    <div class="exercise__body">
-                        <h3 class="product-title">Almohadilla lumbar ergonómica</h3>
-                        <p class="product-description">Brinda soporte a tu espalda baja y mejora tu postura durante el
-                            trabajo.</p>
-                        <div class="product-footer">
-                            <span class="product-price">$29.00</span>
-                            <button class="add-to-cart">Añadir al carrito</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="exercise">
-                    <img class="exercise__img" src="https://picsum.photos/seed/5/400/200" alt="Balance de hombros">
-                    <div class="exercise__body">
-                        <h3 class="product-title">Pelota antiestrés</h3>
-                        <p class="product-description">Excelente para relajar las manos y mejorar la concentración.</p>
-                        <div class="product-footer">
-                            <span class="product-price">$5.00</span>
-                            <button class="add-to-cart">Añadir al carrito</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="exercise">
-                    <img class="exercise__img" src="https://picsum.photos/seed/6/400/200" alt="Silla ergonómica">
-                    <div class="exercise__body">
-                        <h3 class="product-title">Silla ergonómica</h3>
-                        <p class="product-description">Diseñada para mejorar tu postura y reducir la fatiga durante
-                            largas jornadas.</p>
-                        <div class="product-footer">
-                            <span class="product-price">$149.00</span>
-                            <button class="add-to-cart">Añadir al carrito</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="exercise">
-                    <img class="exercise__img" src="https://picsum.photos/seed/7/400/200"
-                        alt="Reloj con recordatorios de estiramiento">
-                    <div class="exercise__body">
-                        <h3 class="product-title">Reloj de pausas activas</h3>
-                        <p class="product-description">Te recuerda moverte y estirarte en intervalos regulares.</p>
-                        <div class="product-footer">
-                            <span class="product-price">$45.00</span>
-                            <button class="add-to-cart">Añadir al carrito</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="exercise">
-                    <img class="exercise__img" src="https://picsum.photos/seed/8/400/200" alt="Esterilla de yoga">
-                    <div class="exercise__body">
-                        <h3 class="product-title">Esterilla de yoga</h3>
-                        <p class="product-description">Ideal para hacer estiramientos o ejercicios de relajación en la
-                            oficina o en casa.</p>
-                        <div class="product-footer">
-                            <span class="product-price">$30.00</span>
-                            <button class="add-to-cart">Añadir al carrito</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="exercise">
-                    <img class="exercise__img" src="https://picsum.photos/seed/9/400/200"
-                        alt="Cojín para silla antiestrés">
-                    <div class="exercise__body">
-                        <h3 class="product-title">Cojín antiestrés para silla</h3>
-                        <p class="product-description">Reduce la presión en la zona lumbar y mejora tu comodidad al
-                            sentarte.</p>
-                        <div class="product-footer">
-                            <span class="product-price">$22.00</span>
-                            <button class="add-to-cart">Añadir al carrito</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="exercise">
-                    <img class="exercise__img" src="https://picsum.photos/seed/10/400/200" alt="Masajeador portátil">
-                    <div class="exercise__body">
-                        <h3 class="product-title">Masajeador portátil</h3>
-                        <p class="product-description">Perfecto para aliviar tensión muscular rápidamente en cualquier
-                            momento.</p>
-                        <div class="product-footer">
-                            <span class="product-price">$55.00</span>
-                            <button class="add-to-cart">Añadir al carrito</button>
-                        </div>
-                    </div>
-                </div>
-
-
-
+            <h2 class="section-title">Productos</h2>
+            <section class="exercises" id="product-list">
+                <!-- Aquí se cargarán los productos -->
             </section>
         </main>
     </div>
 
     <!-- Footer -->
-    <footer class="footer">&copy; 2025 Zen Zap. Todos los derechos reservados.</footer>
+    <footer class="footer">
+        <p>&copy; 2025 ZenZap. Todos los derechos reservados.</p>
+    </footer>
+
+    <div class="exercises" id="product-list"></div>
 
     <script>
-        const layout = document.getElementById('appLayout');
-        const toggleBtn = document.getElementById('toggleSidebar');
-        const userMenu = document.getElementById('userMenu');
-        const userDropdown = document.getElementById('userDropdown');
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-        // Restore sidebar state
-        if (localStorage.getItem('sidebarCollapsed') === 'true') {
-            layout.classList.add('layout--collapsed');
+        function updateCartCount() {
+            const count = cart.reduce((acc, item) => acc + item.quantity, 0);
+            const cartCount = document.getElementById('cart-count');
+            if (cartCount) {
+                cartCount.textContent = count;
+            }
         }
-        toggleBtn.addEventListener('click', () => {
-            layout.classList.toggle('layout--collapsed');
-            localStorage.setItem('sidebarCollapsed', layout.classList.contains('layout--collapsed'));
-        });
 
-        // User dropdown toggle
-        userMenu.addEventListener('click', e => {
-            e.stopPropagation();
-            userDropdown.classList.toggle('open');
-        });
-        document.addEventListener('click', () => {
-            userDropdown.classList.remove('open');
-        });
+        function addToCart(product) {
+            const existing = cart.find(p => p.id === product.id);
+            if (existing) {
+                existing.quantity += 1;
+            } else {
+                cart.push({ ...product, quantity: 1 });
+            }
+
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartCount();
+            showToast(`🛒 "${product.name}" se añadió al carrito`);
+        }
+
+        fetch('http://localhost:8080/api/products')
+            .then(response => response.json())
+            .then(products => {
+                const productList = document.getElementById('product-list');
+                productList.innerHTML = '';
+
+                products.forEach(product => {
+                    const div = document.createElement('div');
+                    div.className = 'exercise';
+                    div.innerHTML = `
+          <img class="product-image" src="${product.urlimagen}" alt="${product.name}">
+          <div class="exercise__body">
+              <h3 class="product-title">${product.name}</h3>
+              <p class="product-description">${product.description}</p>
+              <p class="product-stock"><strong>Stock:</strong> ${product.stock} unidades</p>
+              <div class="product-footer">
+                  <span class="product-price">$ ${Number(product.price).toLocaleString('es-CO')}</span>
+                  <button class="add-to-cart">Añadir al carrito</button>
+              </div>
+          </div>
+        `;
+
+                    const btn = div.querySelector('.add-to-cart');
+                    btn.addEventListener('click', () => addToCart(product));
+
+                    productList.appendChild(div);
+                });
+            });
+
+        updateCartCount();
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.classList.add('show');
+
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000); // Desaparece en 3 segundos
+        }
+
     </script>
+
+
+    <div id="toast" class="toast"></div>
 </body>
 
 </html>

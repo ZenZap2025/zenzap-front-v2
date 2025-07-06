@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Zen Zap – Gestión de Productos</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+  <style>
+    :root {
+      --sidebar-width: 260px;
+      --sidebar-collapsed-width: 60px;
+      --accent: #4CAF50;
+      --bg-sidebar: #1a1a1a;
+      --text-sidebar: #fff;
+      --transition: .3s;
+      --card-shadow: rgba(0,0,0,0.1);
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body, html { font-family:'Segoe UI',sans-serif; background:#f5f5f5; height:100%; }
+
+    .layout { display:flex; }
+
+    .sidebar {
+      position: fixed; top:0; left:0; bottom:0;
+      width: var(--sidebar-width); background:var(--bg-sidebar); color:var(--text-sidebar);
+      padding:2rem 1.5rem; transition:width var(--transition); z-index:1000;
+    }
+    .layout--collapsed .sidebar { width: var(--sidebar-collapsed-width); }
+    .sidebar .toggle { cursor:pointer; color:var(--accent); margin-bottom:2rem; }
+    .sidebar nav a { display:flex; align-items:center; gap:.75rem; color:inherit; text-decoration:none; padding:.5rem 0; transition:color var(--transition); }
+    .sidebar nav a:hover { color:var(--accent); }
+
+    .navbar {
+      position: fixed; top:0; left: var(--sidebar-width); right:0;
+      height:5rem; background: linear-gradient(to right,#16A34A,#14B8A6);
+      display:flex; align-items:center; justify-content:space-between;
+      padding:0 2rem; color:#fff; box-shadow:0 2px 4px rgba(0,0,0,.1);
+      transition:left var(--transition); z-index:999;
+    }
+    .layout--collapsed .navbar { left: var(--sidebar-collapsed-width); }
+    .navbar__logo { display:flex; align-items:center; gap:.5rem; }
+    .logo-circle { width:2rem; height:2rem; background:#fff; border-radius:50%; display:flex; align-items:center; justify-content:center; }
+    .navbar__user { display:flex; align-items:center; gap:.5rem; cursor:pointer; }
+
+    main {
+      margin-top:5.5rem; margin-left: var(--sidebar-width);
+      padding:2rem; transition:margin-left var(--transition);
+    }
+    .layout--collapsed main { margin-left: var(--sidebar-collapsed-width); }
+
+    .admin-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem; }
+    .admin-header h1 { font-size:1.75rem; }
+    .btn-create { background:var(--accent); color:#fff; }
+
+    table {
+      width:100%; border-collapse:collapse; background:#fff;
+      box-shadow:0 2px 8px var(--card-shadow);
+    }
+    table th, table td { border:1px solid #ddd; padding:.75rem; text-align:left; }
+    table th { background:#f0f0f0; }
+  </style>
+</head>
+<body>
+  <div class="layout" id="appLayout">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="toggle" id="toggleSidebar"><i class="fas fa-bars fa-lg"></i></div>
+      <nav>
+        <a href="../pagina_principal/pagina_principal_usuario.html"><i class="fas fa-home"></i><span> Usuario</span></a>
+        <a href="#"><i class="fas fa-store"></i><span> Productos</span></a>
+        <a href="pagina_principal_admin.html"><i class="fas fa-video"></i><span> Videos</span></a>
+      </nav>
+    </aside>
+
+    <!-- Navbar -->
+    <header class="navbar">
+      <div class="navbar__logo">
+        <div class="logo-circle"><span style="color:#16A34A;font-weight:bold;">Z</span></div>
+        <span>ZenZap Admin</span>
+      </div>
+      <div class="navbar__user" data-bs-toggle="modal" data-bs-target="#userModal">
+        <img src="https://picsum.photos/30/30" alt="Admin" class="rounded-circle"><span>Administrador</span>
+      </div>
+    </header>
+
+    <!-- Main -->
+    <main>
+      <div class="admin-header">
+        <h1>Gestión de Productos</h1>
+        <button class="btn btn-create px-4 py-2" data-bs-toggle="modal" data-bs-target="#productModal">+ Nuevo Producto</button>
+      </div>
+      <table>
+        <thead>
+          <tr><th>ID</th><th>Nombre</th><th>Descripción</th><th>Precio</th><th>Stock</th><th>Acciones</th></tr>
+        </thead>
+        <tbody id="product-table-body"></tbody>
+      </table>
+    </main>
+  </div>
+
+  <!-- Modal Producto -->
+  <div class="modal fade" id="productModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Nuevo Producto</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <form id="formProduct">
+            <input type="hidden" id="product-id">
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label class="form-label">Nombre</label>
+                <input type="text" class="form-control" id="product-name" required>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label class="form-label">Precio</label>
+                <input type="number" class="form-control" id="product-price" required>
+              </div>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Descripción</label>
+              <textarea class="form-control" id="product-desc" required></textarea>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Stock</label>
+              <input type="number" class="form-control" id="product-stock" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">URL Imagen</label>
+              <input type="url" class="form-control" id="product-image" required>
+            </div>
+            <button type="submit" class="btn btn-create">Guardar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Usuario -->
+  <div class="modal fade" id="userModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-sm modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Administrador</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body text-center">
+          <button class="btn btn-danger w-100" onclick="logout()">Cerrar sesión</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    const API_P = 'http://localhost:8080/api/products';
+    const tbody = document.getElementById('product-table-body');
+    const form = document.getElementById('formProduct');
+    const modal = new bootstrap.Modal(document.getElementById('productModal'));
+
+    function loadProducts() {
+      fetch(API_P).then(res => res.json()).then(data => {
+        tbody.innerHTML = '';
+        data.forEach(p => {
+          const tr = document.createElement('tr');
+          tr.innerHTML = `
+            <td>${p.id}</td>
+            <td>${p.name}</td>
+            <td>${p.description}</td>
+            <td>$${p.price}</td>
+            <td>${p.stock}</td>
+            <td>
+              <button class="btn btn-sm btn-secondary me-2" onclick='editProduct(${JSON.stringify(p)})'>✏️</button>
+              <button class="btn btn-sm btn-danger" onclick='deleteProduct(${p.id})'>🗑️</button>
+            </td>`;
+          tbody.appendChild(tr);
+        });
+      });
+    }
+
+    function editProduct(p) {
+      document.getElementById('product-id').value = p.id;
+      document.getElementById('product-name').value = p.name;
+      document.getElementById('product-desc').value = p.description;
+      document.getElementById('product-price').value = p.price;
+      document.getElementById('product-stock').value = p.stock;
+      document.getElementById('product-image').value = p.urlimagen;
+      modal.show();
+    }
+
+    form.onsubmit = async e => {
+      e.preventDefault();
+      const payload = {
+        name: form['product-name'].value,
+        description: form['product-desc'].value,
+        price: +form['product-price'].value,
+        stock: +form['product-stock'].value,
+        urlimagen: form['product-image'].value
+      };
+      const id = form['product-id'].value;
+      const url = id ? `${API_P}/${id}` : API_P;
+      const method = id ? 'PUT' : 'POST';
+      try {
+        const res = await fetch(url, {
+          method,
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        if (!res.ok) throw Error();
+        modal.hide();
+        form.reset();
+        loadProducts();
+      } catch (e) {
+        alert('Error al guardar.');
+      }
+    };
+
+    function deleteProduct(id) {
+      if (!confirm('¿Eliminar producto?')) return;
+      fetch(`${API_P}/${id}`, { method: 'DELETE' })
+        .then(res => {
+          if (!res.ok) throw Error();
+          loadProducts();
+        })
+        .catch(() => alert('Error al eliminar.'));
+    }
+
+    function logout() { window.location.href = '/auth/logout'; }
+    document.getElementById('toggleSidebar').onclick = () => document.getElementById('appLayout').classList.toggle('layout--collapsed');
+    document.addEventListener('DOMContentLoaded', loadProducts);
+  </script>
+</body>
+</html>
