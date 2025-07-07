@@ -230,9 +230,9 @@
       <div class="navbar__user" id="userMenu">
         <img src="https://picsum.photos/30/30" alt="Usuario"><span>Usuario</span>
         <div class="user-dropdown" id="userDropdown">
-          <a href="/pagina_principal/pagina_configuracion_perfil.html">Configuración de perfil</a>
+          <a href="pagina_configuracion_perfil.html">Configuración de perfil</a>
           <div class="divider"></div>
-          <a href="pagina_inicio_login/pagina_inicio_final.html" style="color:#d32f2f;">Cerrar sesión</a>
+          <a href="#" style="color:#d32f2f;">Cerrar sesión</a>
         </div>
       </div>
     </header>
@@ -335,7 +335,7 @@
       card.onclick = async () => {
         document.querySelectorAll('.subcat-card').forEach(c => c.classList.remove('active'));
         card.classList.add('active');
-        document.getElementById('recommended-title').textContent = card.textContent + ' recomendada';
+        document.getElementById('recommended-title').textContent = card.textContent + '   recomendada';
         await loadVideos(null, card.dataset.subcategoryId);
       };
     });
