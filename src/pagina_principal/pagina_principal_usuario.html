@@ -232,7 +232,7 @@
         <div class="user-dropdown" id="userDropdown">
           <a href="pagina_configuracion_perfil.html">Configuración de perfil</a>
           <div class="divider"></div>
-          <a href="../pagina_inicio_login/pagina_inicio_final.html" style="color:#d32f2f;">Cerrar sesión</a>
+          <a href="pagina_inicio_login/pagina_inicio_final.html" style="color:#d32f2f;">Cerrar sesión</a>
         </div>
       </div>
     </header>
@@ -335,7 +335,7 @@
       card.onclick = async () => {
         document.querySelectorAll('.subcat-card').forEach(c => c.classList.remove('active'));
         card.classList.add('active');
-        document.getElementById('recommended-title').textContent = card.textContent + ' recomendada';
+        document.getElementById('recommended-title').textContent = card.textContent + '   recomendada';
         await loadVideos(null, card.dataset.subcategoryId);
       };
     });

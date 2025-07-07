@@ -2,293 +2,370 @@
 <html lang="es">
 
 <head>
-    <meta charset="UTF-8">
-    <title>Carrito | Zenzap Shop</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <style>
-        :root {
-            --accent: #4CAF50;
-            --light-bg: #f9f9f9;
-            --transition: 0.3s ease;
-        }
+  <meta charset="UTF-8">
+  <title>Carrito | Zenzap Shop</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    :root {
+      --accent: #4CAF50;
+      --light-bg: #f9f9f9;
+      --transition: 0.3s ease;
+    }
 
-        body {
-            margin: 0;
-            font-family: 'Segoe UI', sans-serif;
-            background: #f5f5f5;
-        }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #f5f5f5;
+    }
 
-        header {
-            background: linear-gradient(to right, #16A34A, #14B8A6, #16A34A);
-            padding: 1rem 2rem;
-            color: #fff;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+    header {
+      background: linear-gradient(to right, #16A34A, #14B8A6, #16A34A);
+      padding: 1rem 2rem;
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
 
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: .5rem;
-        }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+    }
 
-        .logo-circle {
-            background: #fff;
-            color: #16A34A;
-            width: 2rem;
-            height: 2rem;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-weight: bold;
-        }
+    .logo-circle {
+      background: #fff;
+      color: #16A34A;
+      width: 2rem;
+      height: 2rem;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: bold;
+    }
 
-        main {
-            padding: 2rem;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
+    main {
+      padding: 2rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
 
-        h1 {
-            margin-bottom: 1rem;
-        }
+    h1 {
+      margin-bottom: 1rem;
+    }
 
-        .cart-item {
-            background: var(--light-bg);
-            display: flex;
-            gap: 1rem;
-            align-items: center;
-            margin-bottom: 1rem;
-            border-radius: 8px;
-            padding: 1rem;
-            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
-        }
+    .cart-item {
+      background: var(--light-bg);
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      margin-bottom: 1rem;
+      border-radius: 8px;
+      padding: 1rem;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    }
 
-        .cart-item img {
-            width: 100px;
-            height: 100px;
-            object-fit: cover;
-            border-radius: 6px;
-        }
+    .cart-item img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 6px;
+    }
 
-        .cart-details {
-            flex: 1;
-        }
+    .cart-details {
+      flex: 1;
+    }
 
-        .cart-actions {
-            display: flex;
-            gap: .5rem;
-            align-items: center;
-        }
+    .cart-actions {
+      display: flex;
+      gap: .5rem;
+      align-items: center;
+    }
 
-        .cart-actions button {
-            background: var(--accent);
-            color: white;
-            border: none;
-            padding: 0.4rem 0.6rem;
-            cursor: pointer;
-            border-radius: 4px;
-            font-size: 1rem;
-        }
+    .cart-actions button {
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 0.4rem 0.6rem;
+      cursor: pointer;
+      border-radius: 4px;
+      font-size: 1rem;
+    }
 
-        .cart-actions button:hover {
-            background: #43a047;
-        }
+    .cart-actions button:hover {
+      background: #43a047;
+    }
 
-        .cart-total {
-            font-size: 1.3rem;
-            font-weight: bold;
-            margin-top: 2rem;
-            text-align: right;
-        }
+    .cart-total {
+      font-size: 1.3rem;
+      font-weight: bold;
+      margin-top: 2rem;
+      text-align: right;
+    }
 
-        .cart-buttons {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 2rem;
-        }
+    .cart-buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 2rem;
+    }
 
-        .cart-buttons a,
-        .cart-buttons button {
-            background: var(--accent);
-            color: white;
-            text-decoration: none;
-            padding: 0.8rem 1.5rem;
-            border-radius: 6px;
-            border: none;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: background var(--transition);
-        }
+    .cart-buttons a,
+    .cart-buttons button {
+      background: var(--accent);
+      color: white;
+      text-decoration: none;
+      padding: 0.8rem 1.5rem;
+      border-radius: 6px;
+      border: none;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background var(--transition);
+    }
 
-        .cart-buttons a:hover,
-        .cart-buttons button:hover {
-            background: #43a047;
-        }
+    .cart-buttons a:hover,
+    .cart-buttons button:hover {
+      background: #43a047;
+    }
 
-        .empty-message {
-            text-align: center;
-            font-size: 1.2rem;
-            margin-top: 4rem;
-            color: #666;
-        }
+    .empty-message {
+      text-align: center;
+      font-size: 1.2rem;
+      margin-top: 4rem;
+      color: #666;
+    }
 
-        .toast {
-            position: fixed;
-            top: 1rem;
-            right: 1rem;
-            background-color: #4CAF50;
-            color: white;
-            padding: 1rem 1.5rem;
-            border-radius: 6px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-            font-weight: 500;
-            opacity: 0;
-            transform: translateY(-20px);
-            pointer-events: none;
-            transition: opacity 0.3s ease, transform 0.3s ease;
-            z-index: 9999;
-        }
+    .toast {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      background-color: #4CAF50;
+      color: white;
+      padding: 1rem 1.5rem;
+      border-radius: 6px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+      font-weight: 500;
+      opacity: 0;
+      transform: translateY(-20px);
+      pointer-events: none;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      z-index: 9999;
+    }
 
-        .toast.show {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    </style>
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Modal */
+    #purchaseModal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: 10000;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #purchaseModal .modal-content {
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      width: 100%;
+      max-width: 400px;
+      position: relative;
+    }
+
+    #purchaseModal input {
+      width: 100%;
+      margin-bottom: 1rem;
+      padding: .5rem;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+    }
+
+    #purchaseModal button {
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 4px;
+      margin-top: .5rem;
+    }
+  </style>
 </head>
 
 <body>
-    <header>
-        <div class="logo">
-            <div class="logo-circle">Z</div>
-            <span>Zenzap Shop</span>
-        </div>
-        <span>🛒 Carrito</span>
-    </header>
+  <header>
+    <div class="logo">
+      <div class="logo-circle">Z</div>
+      <span>Zenzap Shop</span>
+    </div>
+    <span>🛒 Carrito</span>
+  </header>
 
-    <main>
-        <h1>Tu Carrito</h1>
-        <div id="cart-container"></div>
-        <div class="cart-total" id="cart-total"></div>
+  <main>
+    <h1>Tu Carrito</h1>
+    <div id="cart-container"></div>
+    <div class="cart-total" id="cart-total"></div>
 
-        <div class="cart-buttons" id="cart-buttons" style="display: none;">
-            <a href="pagina__tienda.html">← Volver a la tienda</a>
-            <button onclick="checkout()">Finalizar compra</button>
-        </div>
-    </main>
+    <div class="cart-buttons" id="cart-buttons" style="display: none;">
+      <a href="pagina__tienda.html">← Volver a la tienda</a>
+      <button onclick="abrirModal()">Finalizar compra</button>
+    </div>
+  </main>
 
-    <script>
-  const cart = JSON.parse(localStorage.getItem('cart')) || [];
+  <!-- Modal -->
+  <div id="purchaseModal">
+    <div class="modal-content">
+      <h2>Confirmar compra</h2>
+      <label>Nombre:</label>
+      <input type="text" id="nombreCliente" required />
+      <label>Correo electrónico:</label>
+      <input type="email" id="correoCliente" required />
+      <label>Dirección:</label>
+      <input type="text" id="direccionCliente" required />
+      <div style="text-align: right;">
+        <button onclick="confirmarCompra()" style="background: #4CAF50; color: white;">Confirmar</button>
+        <button onclick="cerrarModal()" style="background: gray; color: white;">Cancelar</button>
+      </div>
+    </div>
+  </div>
 
-  function renderCart() {
-    const container = document.getElementById('cart-container');
-    const totalContainer = document.getElementById('cart-total');
-    const buttons = document.getElementById('cart-buttons');
+  <div id="toast" class="toast"></div>
 
-    container.innerHTML = '';
-    let total = 0;
+  <script>
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-    if (cart.length === 0) {
-      container.innerHTML = '<p class="empty-message">Tu carrito está vacío</p>';
-      totalContainer.textContent = '';
-      buttons.style.display = 'none';
-      return;
-    }
+    function renderCart() {
+      const container = document.getElementById('cart-container');
+      const totalContainer = document.getElementById('cart-total');
+      const buttons = document.getElementById('cart-buttons');
 
-    cart.forEach(product => {
-      total += product.price * product.quantity;
+      container.innerHTML = '';
+      let total = 0;
 
-      const item = document.createElement('div');
-      item.className = 'cart-item';
+      if (cart.length === 0) {
+        container.innerHTML = '<p class="empty-message">Tu carrito está vacío</p>';
+        totalContainer.textContent = '';
+        buttons.style.display = 'none';
+        return;
+      }
 
-      item.innerHTML = `
-        <img src="${product.urlimagen}" alt="${product.name}">
-        <div class="cart-details">
-          <h3>${product.name}</h3>
-          <p>$ ${Number(product.price).toLocaleString('es-CO')} x ${product.quantity}</p>
-        </div>
-        <div class="cart-actions">
-          <button onclick="changeQuantity(${product.id}, 1)">+</button>
-          <button onclick="changeQuantity(${product.id}, -1)">−</button>
-          <button onclick="removeItem(${product.id})">🗑️</button>
-        </div>
-      `;
+      cart.forEach(product => {
+        total += product.price * product.quantity;
 
-      container.appendChild(item);
-    });
+        const item = document.createElement('div');
+        item.className = 'cart-item';
 
-    totalContainer.textContent = `Total: $ ${total.toLocaleString('es-CO')}`;
-    buttons.style.display = 'flex';
-  }
+        item.innerHTML = `
+          <img src="${product.urlimagen}" alt="${product.name}">
+          <div class="cart-details">
+            <h3>${product.name}</h3>
+            <p>$ ${Number(product.price).toLocaleString('es-CO')} x ${product.quantity}</p>
+          </div>
+          <div class="cart-actions">
+            <button onclick="changeQuantity(${product.id}, 1)">+</button>
+            <button onclick="changeQuantity(${product.id}, -1)">−</button>
+            <button onclick="removeItem(${product.id})">🗑️</button>
+          </div>
+        `;
 
-  function changeQuantity(id, amount) {
-    const item = cart.find(p => p.id === id);
-    if (!item) return;
-
-    item.quantity += amount;
-    if (item.quantity <= 0) {
-      removeItem(id);
-    } else {
-      localStorage.setItem('cart', JSON.stringify(cart));
-      renderCart();
-    }
-  }
-
-  function removeItem(id) {
-    const index = cart.findIndex(p => p.id === id);
-    if (index !== -1) {
-      cart.splice(index, 1);
-      localStorage.setItem('cart', JSON.stringify(cart));
-      renderCart();
-    }
-  }
-
-  function checkout() {
-    const purchaseRequest = cart.map(p => ({
-      productId: p.id,
-      quantity: p.quantity
-    }));
-
-    fetch('http://localhost:8080/api/products/buy', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(purchaseRequest)
-    })
-      .then(response => {
-        if (!response.ok) throw new Error('Error al procesar la compra');
-        return response.text(); // o .json() si tu API lo permite
-      })
-      .then(data => {
-        showToast("✅ Gracias por tu compra 🧘‍♂️ Tu pedido ha sido procesado.");
-        localStorage.removeItem('cart');
-        setTimeout(() => {
-          window.location.href = 'pagina__tienda.html';
-        }, 1500);
-      })
-      .catch(err => {
-        console.error(err);
-        showToast("❌ Error al realizar la compra. Por favor intenta más tarde.");
+        container.appendChild(item);
       });
-  }
 
-  function showToast(message) {
-    const toast = document.getElementById('toast');
-    if (toast) {
-      toast.textContent = message;
-      toast.classList.add('show');
-      setTimeout(() => {
-        toast.classList.remove('show');
-      }, 4000);
+      totalContainer.textContent = `Total: $ ${total.toLocaleString('es-CO')}`;
+      buttons.style.display = 'flex';
     }
-  }
 
-  renderCart();
-</script>
+    function changeQuantity(id, amount) {
+      const item = cart.find(p => p.id === id);
+      if (!item) return;
 
+      item.quantity += amount;
+      if (item.quantity <= 0) {
+        removeItem(id);
+      } else {
+        localStorage.setItem('cart', JSON.stringify(cart));
+        renderCart();
+      }
+    }
 
-    <div id="toast" class="toast"></div>
+    function removeItem(id) {
+      const index = cart.findIndex(p => p.id === id);
+      if (index !== -1) {
+        cart.splice(index, 1);
+        localStorage.setItem('cart', JSON.stringify(cart));
+        renderCart();
+      }
+    }
+
+    function abrirModal() {
+      document.getElementById('purchaseModal').style.display = 'flex';
+    }
+
+    function cerrarModal() {
+      document.getElementById('purchaseModal').style.display = 'none';
+    }
+
+    function confirmarCompra() {
+      const nombre = document.getElementById('nombreCliente').value.trim();
+      const correo = document.getElementById('correoCliente').value.trim();
+      const direccion = document.getElementById('direccionCliente').value.trim();
+
+      if (!nombre || !correo || !direccion) {
+        alert("Por favor completa todos los campos.");
+        return;
+      }
+
+      const purchaseRequest = {
+        clientName: nombre,
+        email: correo,
+        address: direccion,
+        products: cart.map(p => ({
+          productId: p.id,
+          quantity: p.quantity
+        }))
+      };
+
+      fetch('http://localhost:8080/api/products/buy', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(purchaseRequest)
+      })
+        .then(response => {
+          if (!response.ok) throw new Error('Error al procesar la compra');
+          return response.text();
+        })
+        .then(data => {
+          cerrarModal();
+          showToast("✅ Compra realizada con éxito. Revisa tu correo.");
+          localStorage.removeItem('cart');
+          setTimeout(() => {
+            window.location.href = 'pagina__tienda.html';
+          }, 1500);
+        })
+        .catch(err => {
+          console.error(err);
+          showToast("❌ Error al realizar la compra.");
+        });
+    }
+
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      if (toast) {
+        toast.textContent = message;
+        toast.classList.add('show');
+        setTimeout(() => {
+          toast.classList.remove('show');
+        }, 4000);
+      }
+    }
+
+    renderCart();
+  </script>
 </body>
 
 </html>
