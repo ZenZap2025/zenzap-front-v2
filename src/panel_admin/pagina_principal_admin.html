@@ -130,9 +130,9 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
       </div>
       <div class="modal-body text-center">
-        <button class="btn btn-danger w-100" onclick="window.location.href='http://localhost:5500/src/pagina_inicio_login/pagina_inicio_final.html'">
+        <button id="logButton" class="btn btn-danger w-100" href="../pagina_inicio_login/pagina_inicio_final.html">
           Cerrar sesión
-        </button>
+        </button>
       </div>
     </div>
   </div>
@@ -391,8 +391,12 @@
 
     // Sidebar toggle & logout
     document.getElementById('toggleSidebar').onclick = () =>
-      document.getElementById('appLayout').classList.toggle('layout--collapsed');
-    function logout() { window.location.href = '/auth/logout'; }
+    document.getElementById('appLayout').classList.toggle('layout--collapsed');
+    //function logout() { window.location.href = '/auth/logout'; }
+    const logoutButton = document.getElementById('logButton');
+    logoutButton.addEventListener('click', () => {
+      window.location.href = '../pagina_inicio_login/pagina_inicio_final.html';
+    });
   </script>
 </body>
 
